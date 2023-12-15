@@ -1,0 +1,89 @@
+<%- include("partials/header2.ejs")%>
+
+	<!-- CONTENT WRAPPER -->
+    <div class="ec-content-wrapper">
+        <div class="content">
+            <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
+                <div>
+                    <h1>Update Product</h1>
+                    <p class="breadcrumbs"><span><a href="index.html">Home</a></span>
+                        <span><i class="mdi mdi-chevron-right"></i></span>Product</p>
+                </div>
+                <div>
+                    <a href="product-list.html" class="btn btn-primary"> View All
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-default">
+                        <div class="card-header card-header-border-bottom">
+                            <h2>Update Product</h2>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row ec-vendor-uploads">
+                                <form class="row g-3" method="post" action="/edit-product">
+
+                                <div class="col-lg-4">
+                                    <div class="ec-vendor-img-upload">
+                                        <div class="ec-vendor-main-img">
+                                            <div class="avatar-upload">
+                                                <div class="avatar-edit">
+                                                    <input type='file' id="imageUpload" class="ec-image-upload"
+                                                        accept=".png, .jpg, .jpeg" name="productImage"  value="<%=product.image.name %>" />
+                                                    <label for="imageUpload"><img
+                                                            src="/img/icons/edit.svg"
+                                                            class="svg_img header_svg" alt="edit" /></label>
+                                                </div>
+                                                <div class="avatar-preview ec-preview">
+                                                    <div class="imagePreview ec-div-preview">
+                                                        <img class="ec-image-preview"
+                                                            src="/img/products/vender-upload-preview.jpg"
+                                                            alt="edit" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--  -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden"  name="productId" value="<%= product._id %>">
+                                
+                                
+                                <div class="col-lg-8">
+                                    <div class="ec-vendor-upload-detail">
+                                        
+                                            <div class="col-md-6">
+                                                <label for="inputEmail4" class="form-label">Product name</label>
+                                                <input type="text" class="form-control slug-title " name="name" id="inputEmail4" value="<%= product.name %>">
+                                            </div>
+                                           
+                                            <div class="col-md-12">
+                                                <label class="form-label">Sort Description</label>
+                                                <textarea class="form-control" rows="2" name="description" ><%= product.description %></textarea>
+                                            </div>
+                                          
+                                            <div class="col-md-6">
+                                                <label class="form-label">Price <span>( In NGN
+                                                        )</span></label>
+                                                <input type="number" class="form-control" id="price1" name="price" value="<%= product.price %>">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Quantity</label>
+                                                <input type="number" class="form-control" id="quantity1" name="quantity" value="<%= product.quantity %>">
+                                            </div>
+                              
+                                          
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-primary">Update</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<%- include("partials/footer2.ejs") %>

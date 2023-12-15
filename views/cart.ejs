@@ -1,0 +1,102 @@
+<%- include("partials/header") -%>
+        <!-- Main Header Area End Here -->
+
+        <!-- Begin Yena's Breadcrumb Area -->
+        <div class="breadcrumb-area ">
+            <div class="container-fluid h-100">
+                <div class="breadcrumb-content h-100">
+                    <h2 class="text-capitalize mb-0">Cart</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">Cart</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Yena's Breadcrumb Area End Here -->
+
+        <!-- Begin Yena's Cart Area -->
+        <div class="yena-cart-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <form action="javascript:void(0)">
+                            <div class="table-content table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="yena-product_remove">remove</th>
+                                            <th class="yena-product-thumbnail">images</th>
+                                            <th class="cart-product-name">Product</th>
+                                            <th class="yena-product-price">Unit Price</th>
+                                            <th class="yena-product-quantity">Quantity</th>
+                                            <th class="yena-product-subtotal">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% if(cartItems.length > 0) { %>
+                                            <% cartItems.map(item => { %>
+                                        <tr>
+                                          <form method="post" action="/remove-cart">
+                                            <input type="hidden" name="productId" value="<%= item._id %>"/>
+                                            <td class="yena-product_remove"><button type="submit">
+                                                <i class="lastudioicon-e-remove"
+                                                title="Remove"></i>
+                                            </button>
+                                            </form>
+                                            </td>
+                                            <td class="yena-product-thumbnail"><a href="javascript:void(0)"><img src="/images/products/<%= item.product_img %>" class="cart-img" width=3px alt="Yena's Cart Thumbnail"></a></td>
+                                            <td class="yena-product-name"><a href="javascript:void(0)"><%=item.product_name %></a></td>
+                                            <td class="yena-product-price"><span class="amount">₦<%= item.product_price %></span></td>
+                                            <td class="quantity">
+                                                <label>Quantity</label>
+                                                <div class="cart-plus-minus">
+                                                    <input class="cart-plus-minus-box" value="1" type="text">
+                                                    <div class="dec qtybutton"><i class="lastudioicon-down-arrow"></i></div>
+                                                    <div class="inc qtybutton"><i class="lastudioicon-up-arrow"></i></div>
+                                                </div>
+                                            </td>
+                                                <% }) %>
+                                            <td class="product-subtotal"><span class="amount">₦<%= total(0) %></span></td>
+                                          
+                                        </tr>
+                                        <% } else { %>
+                                            <p>Your cart is empty</p>
+                                        <% } %>
+                                   
+                                    
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="coupon-all">
+                                        <div class="coupon">
+                                            <input id="coupon_code" class="input-text" name="coupon_code" value="" placeholder="Coupon code" type="text">
+                                            <input class="button mt-xxs-30" name="apply_coupon" value="Apply coupon" type="submit">
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5 ml-auto">
+                                    
+                                    <div class="cart-page-total">
+                                        <h2>Cart totals</h2>
+                                        <ul>
+                                            <li>Subtotal <span>₦<%= total(0) %></span></li>
+                                            <li>Total <span>₦<%= total(0) %></span></li>
+                                        </ul>
+                                        <a href="/checkout">Proceed to checkout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Yena's Cart Area End Here -->
+
+        <%- include("partials/footer") -%>

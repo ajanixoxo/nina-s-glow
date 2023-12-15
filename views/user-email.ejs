@@ -1,0 +1,281 @@
+<style>
+    /* Breadcrumb Area */
+    .breadcrumb-area {
+      background-color: #f5f5f5;
+      padding: 20px 0;
+    }
+  
+    .breadcrumb-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #333;
+    }
+  
+    .breadcrumb-content ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+    }
+  
+    .breadcrumb-content ul li {
+      margin-right: 10px;
+    }
+  
+    .breadcrumb-content ul li a {
+      text-decoration: none;
+      color: #333;
+    }
+  
+    .breadcrumb-content ul li.active {
+      color: #007bff;
+      font-weight: bold;
+    }
+  
+    /* Checkout Area */
+    .checkout-area {
+      margin-top: 20px;
+    }
+  
+    .coupon-accordion h3 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+  
+    #checkout_coupon {
+      display: none;
+    }
+  
+    .coupon-inner_btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 8px 15px;
+      cursor: pointer;
+    }
+  
+    .your-order h3 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  
+    .your-order-table table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+  
+    .your-order-table th,
+    .your-order-table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+  
+    .order-details-row {
+      background-color: #f5f5f5;
+    }
+  
+    .order-details-row ul {
+      list-style: none;
+      padding: 0;
+    }
+  
+    .order-details-row li {
+      margin-bottom: 10px;
+    }
+  
+    .cart-subtotal,
+    .order-total {
+      background-color: #f5f5f5;
+    }
+  
+    .cart-subtotal th,
+    .order-total th {
+      font-weight: bold;
+    }
+  
+    .cart-subtotal td,
+    .order-total td {
+      font-size: 18px;
+    }
+  
+    .payment-accordion .card {
+      margin-bottom: 15px;
+    }
+  
+    .order-button-payment input {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 15px 30px;
+      cursor: pointer;
+    }
+  </style>
+  
+        <!-- Main Header Area End Here -->
+
+        <!-- Begin Yena's Breadcrumb Area -->
+        <div class="breadcrumb-area ">
+            <div class="container-fluid h-100">
+                <div class="breadcrumb-content h-100">
+                    <h2 class="text-capitalize mb-0">Checkout</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">Checkout</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Yena's Breadcrumb Area End Here -->
+
+        <!-- Begin Yena's Checkout Area -->
+        <div class="checkout-area">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="coupon-accordion">
+                          
+                            <h3>Have a coupon? <span id="showcoupon">Click here to enter your code</span></h3>
+                            <div id="checkout_coupon" class="coupon-checkout-content">
+                                <div class="coupon-info">
+                                    <form action="javascript:void(0)">
+                                        <p class="checkout-coupon">
+                                            <input placeholder="Coupon code" type="text">
+                                            <input class="coupon-inner_btn" value="Apply Coupon" type="submit">
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                  
+                    <div class="col-lg-6 col-12">
+                        <div class="your-order">
+                            <h3>Your Order Alert</h3>
+                            <div class="your-order-table table-responsive">
+                                <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th class="cart-product-name">Product</th>
+                                        <th class="cart-product-total">Total</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <% if(cartItems.length > 0) { %>
+                                        <% cartItems.map(item => { %>
+                                          <tr class="cart_item">
+                                            <td class="cart-product-name"><%= item.product_name %><strong class="product-quantity">
+                                              × 3</strong></td>
+                                            <td class="cart-product-total"><span class="amount">₦<%= item.product_price %></span></td>
+                                          </tr>
+                                        <% }) %>
+                                      <% } else { %>
+                                        <p>Your orders are empty</p>
+                                      <% } %>
+                                  
+                                      <!-- Additional row for order details -->
+                                      <tr class="order-details-row">
+                                        <td colspan="2">
+                                          <strong>Order Details:</strong>
+                                          <ul>
+                                            <li>Full Name: <%= Full_Name %></li>
+                                            <li>Email: <%= Email %></li>
+                                            <li>Address: <%= Address %></li>
+                                            <li>Country: <%= country %></li>
+                                            <li>City: <%= city %></li>
+                                            <li>State: <%= State %></li>
+                                            <li>Phone Number: <%= Phone_Number %></li>
+                                          </ul>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                    <tfoot>
+                                      <tr class="cart-subtotal">
+                                        <th>Cart Subtotal</th>
+                                        <td><span class="amount">₦<%= total(0) %></span></td>
+                                      </tr>
+                                      <tr class="order-total">
+                                        <th>Order Total</th>
+                                        <td><strong><span class="amount">₦<%= total(0) %></span></strong></td>
+                                        <input type="hidden" id="amount" value="<%= total(0) %>">
+                                      </tr>
+                                    </tfoot>
+                                  </table>
+                                  
+                             
+                            </div>
+                            <!-- <div class="payment-method">
+                                <div class="payment-accordion">
+                                    <div id="accordion">
+                                        <div class="card">
+                                            <div class="card-header" id="#payment-1">
+                                                <h5 class="panel-title">
+                                                    <a href="javascript:void(0)" class="" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                        Direct Bank Transfer.
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                            <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
+                                                <div class="card-body">
+                                                    <p>Make your payment directly into our bank account. Please use your Order
+                                                        ID as the payment
+                                                        reference. Your order won’t be shipped until the funds have cleared in
+                                                        our account.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-header" id="#payment-2">
+                                                <h5 class="panel-title">
+                                                    <a href="javascript:void(0)" class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                        Cheque Payment
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                            <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+                                                <div class="card-body">
+                                                    <p>Make your payment directly into our bank account. Please use your Order
+                                                        ID as the payment
+                                                        reference. Your order won’t be shipped until the funds have cleared in
+                                                        our account.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-header" id="#payment-3">
+                                                <h5 class="panel-title">
+                                                    <a href="javascript:void(0)" class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                        PayPal
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                            <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
+                                                <div class="card-body">
+                                                    <p>Make your payment directly into our bank account. Please use your Order
+                                                        ID as the payment
+                                                        reference. Your order won’t be shipped until the funds have cleared in
+                                                        our account.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="order-button-payment">
+                                        <form method="post" action="/checkout-payment" >
+                                        <input value="Place order" type="submit">
+                                    </div>
+                                </form>
+                                </div>
+
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Yena's Checkout Area End Here -->

@@ -1,0 +1,101 @@
+<%- include("partials/header") -%> 
+
+
+  
+
+        <!-- Begin Yena's Breadcrumb Area -->
+        <div class="breadcrumb-area ">
+            <div class="container-fluid h-100">
+                <div class="breadcrumb-content h-100">
+                    <h2 class="text-capitalize mb-0">Login & Register</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">Login & Register</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Yena's Breadcrumb Area End Here -->
+
+        <!-- Begin Login Register Area -->
+        <div class="login-register_area">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6">
+                        <form action="/login" method="post">
+                            <div class="login-form">
+                                <h4 class="login-title">Login</h4>
+                                <div class="row">
+                                    <div class="col-md-12 col-12">
+                                        <label>Email Address/Full Name*</label>
+                                        <input type="text" placeholder="Email Address Or Full Name"   name="username">
+                                    </div>
+                                
+                                    <div class="col-12 mb--20">
+                                        <label>Password</label>
+                                        <input type="password" placeholder="Password" name="password">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="check-box">
+                                            <input type="checkbox" id="remember_me">
+                                            <label for="remember_me">Remember me</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="forgotton-password_info">
+                                            <a href="#"> Forgotten pasward?</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button class="login_btn" type="submit">Login</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
+                        <form action="/login-register" method="post">
+                            <div class="login-form">
+                                <h4 class="login-title">Register</h4>
+                                <div class="row">
+                                    <div class="col-md-6 col-12 mb--20">
+                                        <label>Full Name</label>
+                                        <input type="text" placeholder="First Name" name="First_Name">
+                                    </div>
+                                    <div class="col-md-12 col-12">
+                                        <label>Phone Number*</label>
+                                        <input type="number" placeholder="Enter Your Phone Number"   name="PhoneNo">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>Email Address*</label>
+                                        <input type="email" placeholder="Email Address" name="username">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Password*</label>
+                                        <input type="password" placeholder="Password" name="password">
+                                    </div>
+                                   
+                                    <div class="col-12">
+                                        <button class="register_btn" type="submit">Register</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 mt-5" >
+                                <div class="card social-block">
+                                  <div class="card-body">
+                                    <a class="btn btn-block btn-social btn-google" href="/auth/google" role="button">
+                                      <i class="fab fa-google"></i>
+                                      Sign Up with Google
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                        </form>
+                     
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Login Register Area  End Here -->
+
+        <%- include("partials/footer") -%>

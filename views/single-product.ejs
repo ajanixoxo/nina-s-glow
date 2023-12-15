@@ -1,0 +1,453 @@
+<%- include("partials/header") -%>
+
+        <!-- Begin Yena's Breadcrumb Area -->
+        <div class="breadcrumb-area ">
+            <div class="container-fluid h-100">
+                <div class="breadcrumb-content h-100">
+                    <h2 class="text-capitalize mb-0">Single Product</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">Product Layout</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Yena's Breadcrumb Area End Here -->
+
+        <!-- Begin Single Product Area -->
+        <main class="pl-main_content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product-details_area row">
+                            <div class="col-lg-6">
+                                <div class="product-details_img vertical-tab">
+                                    <div class="product-details_slider lightgallery slick-img-slider yena-element-carousel" data-slick-options='{
+                                        "slidesToShow": 1,
+                                        "arrows": false,
+                                        "fade": true,
+                                        "draggable": false,
+                                        "swipe": false,
+                                        "asNavFor": ".pd-slider-nav"
+                                        }'>
+                                        <div class="single-img zoom">
+                                            <img src="/images/products/<%= product.image.name %>" alt="Nina's Product image">
+                                            <span class="sticker">New</span>
+                                            <div class="inner-stuff">
+                                                <ul>
+                                                    <li class="popup-btn">
+                                                        <a class="popup-vimeo" href="https://player.vimeo.com/video/172601404?autoplay=1">
+                                                            <i class="dlicon media-1_button-play"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="gallery-item" data-src="images/product/large-size/1.jpg">
+                                                        <a href="javascript:void(0)">
+                                                            <i class="lastudioicon-full-screen"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="single-img zoom">
+                                            <img src="/images/products/<%= product.image.name%>" alt="Nina's Product image">
+                                            <span class="sticker">New</span>
+                                            <div class="inner-stuff">
+                                                <ul>
+                                                    <li class="popup-btn">
+                                                        <a class="popup-vimeo" href="https://player.vimeo.com/video/172601404?autoplay=1">
+                                                            <i class="dlicon media-1_button-play"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="gallery-item" data-src="images/product/large-size/2.jpg">
+                                                        <a href="javascript:void(0)">
+                                                            <i class="lastudioicon-full-screen"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="single-img zoom">
+                                            <img src="/images/products/<%= product.image.name%>" alt="Nina's Product image">
+                                            <span class="sticker">New</span>
+                                            <div class="inner-stuff">
+                                                <ul>
+                                                    <li class="popup-btn">
+                                                        <a class="popup-vimeo" href="https://player.vimeo.com/video/172601404?autoplay=1">
+                                                            <i class="dlicon media-1_button-play"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="gallery-item" data-src="images/product/large-size/3.jpg">
+                                                        <a href="javascript:void(0)">
+                                                            <i class="lastudioicon-full-screen"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                  
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="product-details_content">
+                                    <h3 class="heading text-uppercase mb-0"><%= product.name %></h3>
+                                    <div class="essential-stuff">
+                                        <div class="price-box">
+                                            <span class="new-price ms-0">₦ <%= product.price%></span>
+                                        </div>
+                                        <div class="product-info">
+                                            <div class="rating-box">
+                                                <ul>
+                                                    <li><i class="lastudioicon-star-rate-1"></i></li>
+                                                    <li><i class="lastudioicon-star-rate-1"></i></li>
+                                                    <li><i class="lastudioicon-star-rate-1"></i></li>
+                                                    <li><i class="lastudioicon-star-rate-1"></i></li>
+                                                    <li><i class="lastudioicon-star-rate-1"></i></li>
+                                                </ul>
+                                            </div>
+                                            <span class="review">
+                                        <a href="javascript:void(0)">(1 customer review)</a>
+                                    </span>
+                                            <span class="in-stock"><i class="lastudioicon-check"></i>1 Sold / <%= product.quantity %> in
+                                        stock</span>
+                                        </div>
+                                    </div>
+                                    <p class="short-desc mb-0"><%= product.description %>.</p>
+                                    <div class="quantity-with_btn">
+                                        <div class="quantity">
+                                            <div class="cart-plus-minus">
+                                                <input class="cart-plus-minus-box" value="1" type="text">
+                                                <div class="dec qtybutton"><i class="lastudioicon-down-arrow"></i></div>
+                                                <div class="inc qtybutton"><i class="lastudioicon-up-arrow"></i></div>
+                                            </div>
+                                        </div>
+                                        <form action="/product" method="post">
+                                        <div class="add-to_cart">
+                                         
+                                                <input type="hidden" name="productId" value="<%= product._id %>">
+                                                <input type="hidden" name="productName" value="<%= product.name %>"> 
+                                                <input type="hidden" name="productPrice" value="<%= product.price %>"> 
+                                                <input type="hidden" name="productImg" value="<%= product.image.name %>"> 
+                                                <button  class="yena-btn sorbus-color" type="submit">Add To Cart <i class="lastudioicon-shopping-cart-3"></i></button> 
+                                           
+                                            <!-- <a class="yena-btn sorbus-color" href="javascript:void(0)">Add to cart</a> -->
+                                        </div>
+                                    </form> 
+                                    </div>
+                                    <ul class="additional-btn">
+                                        <li>
+                                            <a href="javascript:void(0)"><i class="lastudioicon-heart-2"></i> Add to
+                                                wishlist</a>
+                                        </li>
+                                  
+                                    </ul>
+                                    <div class="sku">
+                                        <span>SKU: LA123</span>
+                                    </div>
+                                    <!-- <ul class="categories">
+                                        <li>Categories: </li>
+                                        <li>
+                                            <a href="javascript:void(0)">Foot, Hand & Nail Care,</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)">Fragrance,</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)">Hair Care,</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)">Makeup,</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)">Skin Care</a>
+                                        </li>
+                                    </ul>
+                                    <ul class="categories tags">
+                                        <li>Tags: </li>
+                                        <li>
+                                            <a href="javascript:void(0)">Beauty,</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)">Beauty01,</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)">Cosmetic,</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)">Skin solution,</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)">Skincare</a>
+                                        </li>
+                                    </ul> -->
+                                    <div class="social-link with-color with-radius">
+                                        <ul>
+                                            <li class="facebook">
+                                                <a href="https://www.facebook.com/" data-bs-toggle="tooltip" target="_blank" title="Facebook">
+                                                    <i class="lastudioicon-b-facebook"></i>
+                                                </a>
+                                            </li>
+                                            <li class="twitter">
+                                                <a href="https://twitter.com/" data-bs-toggle="tooltip" target="_blank" title="Twitter">
+                                                    <i class="lastudioicon-b-twitter"></i>
+                                                </a>
+                                            </li>
+                                            <li class="instagram">
+                                                <a href="https://www.instagram.com/" data-bs-toggle="tooltip" target="_blank" title="Instagram">
+                                                    <i class="lastudioicon-b-instagram"></i>
+                                                </a>
+                                            </li>
+                                            <li class="vimeo">
+                                                <a href="https://vimeo.com/" data-bs-toggle="tooltip" target="_blank" title="Vimeo">
+                                                    <i class="lastudioicon-b-vimeo"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Begin Yena's Product Tab Area Three -->
+            <!-- <div class="yena-product-tab_area-3 ">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="product-tab">
+                                <ul class="nav product-menu">
+                                    <li><a class="active" data-bs-toggle="tab" href="#description"><span>Description</span></a></li>
+                                    <li><a data-bs-toggle="tab" href="#reviews"><span>Reviews (1)</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div> -->
+            <!-- Yena's Product Tab Area Three End Here -->
+
+            <!-- Begin Yena's Product Area Five -->
+            <!-- <div class="yena-product_area-5">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="section-title-4">
+                                <h2 class="heading text-capitalize font-style_italic mb-30">Related Products</h2>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="yena-element-carousel product-slider" data-slick-options='{
+                        "slidesToShow": 4,
+                        "slidesToScroll": 1,
+                        "infinite": false,
+                        "arrows": false,
+                        "dots": false,
+                        "spaceBetween_xl": 60
+                        }' data-slick-responsive='[
+                        {"breakpoint":992, "settings": {
+                        "slidesToShow": 2
+                        }},
+                        {"breakpoint":576, "settings": {
+                        "slidesToShow": 1
+                        }}
+                    ]'>
+
+                                <div class="product-item">
+                                    <div class="single-product">
+                                        <div class="product-img">
+                                            <a href="single-product.html">
+                                                <img class="primary-img" src="images/product/medium-size/8-2.jpg" alt="Nina's Product image">
+                                                <img class="secondary-img" src="images/product/medium-size/8-1.jpg" alt="Nina's Product image">
+                                            </a>
+                                            <div class="add-actions">
+                                                <ul>
+                                                    <li><a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                    </li>
+                                                    <li class="Yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="Yena's View"><i
+                                                        class="lastudioicon-eye"></i></a>
+                                                    </li>
+                                                    <li><a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                    </li>
+                                                   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="product-content exceptional-font_family">
+                                            <div class="product-desc_info">
+                                                <h3 class="product-name"><a href="single-product.html">Rest and Sleep Calming Spray</a></h3>
+                                                <div class="price-box">
+                                                    <span class="new-price ms-0">₦59.99</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-item">
+                                    <div class="single-product">
+                                        <div class="product-img">
+                                            <a href="single-product.html">
+                                                <img class="primary-img" src="images/product/medium-size/7-2.jpg" alt="Nina's Product image">
+                                                <img class="secondary-img" src="images/product/medium-size/7-1.jpg" alt="Nina's Product image">
+                                            </a>
+                                            <span class="sticker">New</span>
+                                            <div class="add-actions">
+                                                <ul>
+                                                    <li><a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                    </li>
+                                                    <li class="Yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="Yena's View"><i
+                                                        class="lastudioicon-eye"></i></a>
+                                                    </li>
+                                                    <li><a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                    </li>
+                                                   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="product-content exceptional-font_family">
+                                            <div class="product-desc_info">
+                                                <h3 class="product-name"><a href="single-product.html">InstaBoost Conditioning Color Masque</a></h3>
+                                                <div class="price-box">
+                                                    <span class="old-price">₦59.99</span>
+                                                    <span class="new-price">₦49.99</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-item">
+                                    <div class="single-product">
+                                        <div class="product-img">
+                                            <a href="single-product.html">
+                                                <img class="primary-img" src="images/product/medium-size/6-2.jpg" alt="Nina's Product image">
+                                                <img class="secondary-img" src="images/product/medium-size/6-1.jpg" alt="Nina's Product image">
+                                            </a>
+                                            <div class="add-actions">
+                                                <ul>
+                                                    <li><a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                    </li>
+                                                    <li class="Yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="Yena's View"><i
+                                                        class="lastudioicon-eye"></i></a>
+                                                    </li>
+                                                    <li><a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                    </li>
+                                                   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="product-content exceptional-font_family">
+                                            <div class="product-desc_info">
+                                                <h3 class="product-name"><a href="single-product.html">Carrot Body Scrub</a></h3>
+                                                <div class="price-box">
+                                                    <span class="new-price ms-0">₦49.99</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-item">
+                                    <div class="single-product">
+                                        <div class="product-img">
+                                            <a href="single-product.html">
+                                                <img class="primary-img" src="images/product/medium-size/5-2.jpg" alt="Nina's Product image">
+                                                <img class="secondary-img" src="images/product/medium-size/5-1.jpg" alt="Nina's Product image">
+                                            </a>
+                                            <div class="add-actions">
+                                                <ul>
+                                                    <li><a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                    </li>
+                                                    <li class="Yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="Yena's View"><i
+                                                        class="lastudioicon-eye"></i></a>
+                                                    </li>
+                                                    <li><a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                    </li>
+                                                   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="product-content exceptional-font_family">
+                                            <div class="product-desc_info">
+                                                <h3 class="product-name"><a href="single-product.html">InstaBoost Conditioning Color Masque</a></h3>
+                                                <div class="price-box">
+                                                    <span class="new-price ms-0">₦59.99</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-item">
+                                    <div class="single-product">
+                                        <div class="product-img">
+                                            <a href="single-product.html">
+                                                <img class="primary-img" src="images/product/medium-size/4-2.jpg" alt="Nina's Product image">
+                                                <img class="secondary-img" src="images/product/medium-size/4-1.jpg" alt="Nina's Product image">
+                                            </a>
+                                            <div class="add-actions">
+                                                <ul>
+                                                    <li><a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                    </li>
+                                                    <li class="Yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="Yena's View"><i
+                                                        class="lastudioicon-eye"></i></a>
+                                                    </li>
+                                                    <li><a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                    </li>
+                                                   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="product-content exceptional-font_family">
+                                            <div class="product-desc_info">
+                                                <h3 class="product-name"><a href="single-product.html">Rest and Sleep Calming Spray</a></h3>
+                                                <div class="price-box">
+                                                    <span class="new-price ms-0">₦59.99</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-item">
+                                    <div class="single-product">
+                                        <div class="product-img">
+                                            <a href="single-product.html">
+                                                <img class="primary-img" src="images/product/medium-size/3-2.jpg" alt="Nina's Product image">
+                                                <img class="secondary-img" src="images/product/medium-size/3-1.jpg" alt="Nina's Product image">
+                                            </a>
+                                            <div class="add-actions">
+                                                <ul>
+                                                    <li><a href="cart.html" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                    </li>
+                                                    <li class="Yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="Yena's View"><i
+                                                        class="lastudioicon-eye"></i></a>
+                                                    </li>
+                                                    <li><a href="wishlist.html" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                    </li>
+                                                   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="product-content exceptional-font_family">
+                                            <div class="product-desc_info">
+                                                <h3 class="product-name"><a href="single-product.html">InstaBoost Conditioning Color Masque</a></h3>
+                                                <div class="price-box">
+                                                    <span class="old-price">₦59.99</span>
+                                                    <span class="new-price">₦49.99</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- Yena's Product Area Five End Here -->
+
+        </main>
+        <!-- Single Product Area End Here -->
+
+        <%- include("partials/footer") -%>

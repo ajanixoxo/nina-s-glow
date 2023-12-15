@@ -1,0 +1,1174 @@
+<%- include("partials/header") -%>
+        <!-- Main Header Area Two End Here -->
+
+        <!-- Begin Slider Area Two -->
+        <div class="slider-area-2">
+
+            <div class="yena-element-carousel home-slider arrow-style-3" data-slick-options='{
+            "slidesToShow": 1,
+            "slidesToScroll": 1,
+            "infinite": true,
+            "arrows": true,
+            "dots": true,
+            "autoplay" : true,
+            "fade" : true,
+            "autoplaySpeed" : 7000,
+            "pauseOnHover" : false,
+            "pauseOnFocus" : false
+            }' data-slick-responsive='[
+            {"breakpoint":768, "settings": {
+            "slidesToShow": 1
+            }},
+            {"breakpoint":575, "settings": {
+            "slidesToShow": 1
+            }}
+        ]'>
+
+                <div class="slide-item slide-left_center bg-slide_height bg-fantasy animation-style-01">
+                    <div class="inner-slide">
+                        <div class="slide-content">
+                            <div class="inner-content">
+                                <h2>Natural Beauty</h2>
+                                <p class="short-desc">The Best Dark Spot Correctors For Every Budget </p>
+                                <div class="slide-btn">
+                                    <a class="yena-btn" href="/shop-fullwidth">Shopping Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-img">
+                            <img src="images/Glowing Skin.jpg" alt="Slide Images">
+                            <div class="img-border"><span></span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-item slide-left_center bg-slide_height bg-dim_gray animation-style-02">
+                    <div class="inner-slide">
+                        <div class="slide-content white-text">
+                            <div class="inner-content">
+                                <h2>Modern Style</h2>
+                                <p class="short-desc">Giving Your Skin Irresistable Glow</p>
+                                <div class="slide-btn">
+                                    <a class="yena-btn" href="/shop-fullwidth">Know More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-img">
+                            <img src="images/home page (11).jpg" alt="Slide Images">
+                            <div class="img-border"><span></span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Slider Area Two End Here -->
+
+        <!-- Begin Banner Six Area -->
+        <div class="banner-area banner-area-6 wow fadeInUp">
+            <div class="custom-container">
+                <div class="row gx-0-xs">
+                    <div class="col-lg-12">
+                        <div class="banner-item bg-snow">
+                            <div class="img-border"></div>
+                            <div class="row align-items-center gx-0-xs">
+                                <div class="col-sm-6">
+                                    <div class="banner-img ms-lg-4">
+                                        <a href="/shop-fullwidth">
+                                            <img class="img-full" src="images/home page (1).jpg" alt="Banner Image">
+                                        </a>
+                                        <div class="signature">
+                                            <img class="img-full" src="images/banner/signature/1.png" alt="Banner Signature">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="banner-content ms-xl-5 wow fadeInUp">
+                                        <span class="text-uppercase">Top collection</span>
+                                        <h2 class="title font-style_italic">SkinCare Kit 2022</h2>
+                                        <p class="short-desc mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum augue ac nisi feugiat, et facilisis libero ultrices. Maecenas a suscipit nisl. Curabitur ut blandit nunc</p>
+                                        <a class="yena-btn" href="/shop-fullwidth">Learn More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Banner Area Six End Here -->
+
+        <!-- Begin yena's Product Tab Area Two -->
+        <div class="yena-product-tab_area-2  wow fadeInUp">
+            <div class="container-fluid">
+                <div class="section-title ">
+                    <h2 class="heading text-uppercase font-style_italic">New Products</h2>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="tab-section_area">
+                                    <div class="product-tab">
+                                        <ul class="nav product-menu">
+                                            <li><a class="active" data-bs-toggle="tab" href="#all"><span>All</span></a></li>
+                                            <!-- <li><a data-bs-toggle="tab" href="#makeup"><span>Makeup</span></a></li>
+                                            <li><a data-bs-toggle="tab" href="#skin-care"><span>Skin Care</span></a></li> -->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="tab-content yena-tab_content">
+                                    <div id="all" class="tab-pane active show" role="tabpanel">
+                                        <div class="yena-element-carousel product-slider" data-slick-options='{
+                                        "slidesToShow": 3,
+                                        "slidesToScroll": 1,
+                                        "infinite": false,
+                                        "arrows": false,
+                                        "dots": false,
+                                        "spaceBetween_xl": 60,
+                                        "rows" : 2
+                                        }' data-slick-responsive='[
+                                        {"breakpoint":992, "settings": {
+                                        "slidesToShow": 2
+                                        }},
+                                        {"breakpoint":576, "settings": {
+                                        "slidesToShow": 1
+                                        }}
+                                    ]'>
+                                                  <% products.slice(0, 4).forEach(product => { %>                         
+                                            <div class="product-item">
+                                                <div class="single-product">
+                                                    <div class="product-img">
+                                                        <a href="/single-product">
+                                                            <img class="primary-img" src="/images/products/<%=product.image.name %>" alt="nina's Product Image">
+                                                            <img class="secondary-img" src="/images/products/<%=product.image.name %>" alt="nina's Product Image">
+                                                        </a>
+                                                        <div class="add-actions">
+                                                            <ul>
+                                                                <li><form  method="post" action="/product">
+
+                                                                    <input type="hidden" name="productId" value="<%= product._id %>">
+                                                                    <input type="hidden" name="productName" value="<%= product.name %>"> 
+                                                                    <input type="hidden" name="productPrice" value="<%= product.price %>"> 
+                                                                    <input type="hidden" name="productImg" value="<%= product.image.name %>"> 
+                                                                    <button type="submit"> <i class="lastudioicon-shopping-cart-3"></i></button> 
+                                                                </form> </a>
+                                                                </li>
+                                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                                        class="lastudioicon-eye"></i></a>
+                                                                </li>
+                                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                                </li>
+                                                              
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content text-center">
+                                                        <div class="product-desc_info">
+                                                            <h3 class="product-name"><a href="/single-product"><%= product.name %></a></h3>
+                                                            <div class="price-box"> 
+                                                                <span class="new-price ms-0"><%= product.price %></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+<% }) %>
+                                        </div>
+                                    </div>
+                                    <!-- <div id="makeup" class="tab-pane" role="tabpanel">
+                                        <div class="yena-element-carousel product-slider" data-slick-options='{
+                                        "slidesToShow": 3,
+                                        "slidesToScroll": 1,
+                                        "infinite": false,
+                                        "arrows": false,
+                                        "dots": false,
+                                        "spaceBetween_xl": 60,
+                                        "rows" : 2
+                                        }' data-slick-responsive='[
+                                        {"breakpoint":992, "settings": {
+                                        "slidesToShow": 2
+                                        }},
+                                        {"breakpoint":576, "settings": {
+                                        "slidesToShow": 1
+                                        }}
+                                    ]'>
+
+                                            <div class="product-item">
+                                                <div class="single-product">
+                                                    <div class="product-img">
+                                                        <a href="/single-product">
+                                                            <img class="primary-img" src="images/products/medium-size/5-1.jpg" alt="nina's Product Image">
+                                                            <img class="secondary-img" src="images/products/medium-size/5-2.jpg" alt="nina's Product Image">
+                                                        </a>
+                                                        <div class="add-actions">
+                                                            <ul>
+                                                                <li><a href="/cart" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                                </li>
+                                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                                        class="lastudioicon-eye"></i></a>
+                                                                </li>
+                                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                                </li>
+                                                                <li><a href="/compare" data-bs-toggle="tooltip" data-placement="top" title="Add To Compare"><i class="lastudioicon-compare"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content text-center">
+                                                        <div class="product-desc_info">
+                                                            <h3 class="product-name"><a href="/single-product">InstaBoost Conditioning Color Masque</a></h3>
+                                                            <div class="price-box">
+                                                                <span class="new-price ms-0">$49.99</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-item">
+                                                <div class="single-product">
+                                                    <div class="product-img">
+                                                        <a href="/single-product">
+                                                            <img class="primary-img" src="images/products/medium-size/6-1.jpg" alt="nina's Product Image">
+                                                            <img class="secondary-img" src="images/products/medium-size/6-2.jpg" alt="nina's Product Image">
+                                                        </a>
+                                                        <div class="add-actions">
+                                                            <ul>
+                                                                <li><a href="/cart" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                                </li>
+                                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                                        class="lastudioicon-eye"></i></a>
+                                                                </li>
+                                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                                </li>
+                                                                <li><a href="/compare" data-bs-toggle="tooltip" data-placement="top" title="Add To Compare"><i class="lastudioicon-compare"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content text-center">
+                                                        <div class="product-desc_info">
+                                                            <h3 class="product-name"><a href="/single-product">InstaBoost Conditioning Color Masque</a></h3>
+                                                            <div class="price-box">
+                                                                <span class="new-price ms-0">$59.99</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-item">
+                                                <div class="single-product">
+                                                    <div class="product-img">
+                                                        <a href="/single-product">
+                                                            <img class="primary-img" src="images/products/medium-size/7-1.jpg" alt="nina's Product Image">
+                                                            <img class="secondary-img" src="images/products/medium-size/7-2.jpg" alt="nina's Product Image">
+                                                        </a>
+                                                        <div class="add-actions">
+                                                            <ul>
+                                                                <li><a href="/cart" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                                </li>
+                                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                                        class="lastudioicon-eye"></i></a>
+                                                                </li>
+                                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                                </li>
+                                                                <li><a href="/compare" data-bs-toggle="tooltip" data-placement="top" title="Add To Compare"><i class="lastudioicon-compare"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content text-center">
+                                                        <div class="product-desc_info">
+                                                            <h3 class="product-name"><a href="/single-product">Rest and Sleep Calming Spray</a></h3>
+                                                            <div class="price-box">
+                                                                <span class="new-price ms-0">$59.99</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-item">
+                                                <div class="single-product">
+                                                    <div class="product-img">
+                                                        <a href="/single-product">
+                                                            <img class="primary-img" src="images/products/medium-size/8-1.jpg" alt="nina's Product Image">
+                                                            <img class="secondary-img" src="images/products/medium-size/8-2.jpg" alt="nina's Product Image">
+                                                        </a>
+                                                        <div class="add-actions">
+                                                            <ul>
+                                                                <li><a href="/cart" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                                </li>
+                                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                                        class="lastudioicon-eye"></i></a>
+                                                                </li>
+                                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                                </li>
+                                                                <li><a href="/compare" data-bs-toggle="tooltip" data-placement="top" title="Add To Compare"><i class="lastudioicon-compare"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content text-center">
+                                                        <div class="product-desc_info">
+                                                            <h3 class="product-name"><a href="/single-product">InstaBoost Conditioning Color Masque</a></h3>
+                                                            <div class="price-box">
+                                                                <span class="old-price">$59.99</span>
+                                                                <span class="new-price">$49.99</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-item">
+                                                <div class="single-product">
+                                                    <div class="product-img">
+                                                        <a href="/single-product">
+                                                            <img class="primary-img" src="images/products/medium-size/1-1.jpg" alt="nina's Product Image">
+                                                            <img class="secondary-img" src="images/products/medium-size/1-2.jpg" alt="nina's Product Image">
+                                                        </a>
+                                                        <div class="add-actions">
+                                                            <ul>
+                                                                <li><a href="/cart" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                                </li>
+                                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                                        class="lastudioicon-eye"></i></a>
+                                                                </li>
+                                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                                </li>
+                                                                <li><a href="/compare" data-bs-toggle="tooltip" data-placement="top" title="Add To Compare"><i class="lastudioicon-compare"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content text-center">
+                                                        <div class="product-desc_info">
+                                                            <h3 class="product-name"><a href="/single-product">InstaBoost Conditioning Color Masque</a></h3>
+                                                            <div class="price-box">
+                                                                <span class="new-price ms-0">$20.00</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-item">
+                                                <div class="single-product">
+                                                    <div class="product-img">
+                                                        <a href="/single-product">
+                                                            <img class="primary-img" src="images/products/medium-size/2-1.jpg" alt="nina's Product Image">
+                                                            <img class="secondary-img" src="images/products/medium-size/2-2.jpg" alt="nina's Product Image">
+                                                        </a>
+                                                        <div class="add-actions">
+                                                            <ul>
+                                                                <li><a href="/cart" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                                </li>
+                                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                                        class="lastudioicon-eye"></i></a>
+                                                                </li>
+                                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                                </li>
+                                                                <li><a href="/compare" data-bs-toggle="tooltip" data-placement="top" title="Add To Compare"><i class="lastudioicon-compare"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content text-center">
+                                                        <div class="product-desc_info">
+                                                            <h3 class="product-name"><a href="/single-product">InstaBoost Conditioning Color Masque</a></h3>
+                                                            <div class="price-box">
+                                                                <span class="new-price ms-0">$59.99</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-item">
+                                                <div class="single-product">
+                                                    <div class="product-img">
+                                                        <a href="/single-product">
+                                                            <img class="primary-img" src="images/products/medium-size/3-1.jpg" alt="nina's Product Image">
+                                                            <img class="secondary-img" src="images/products/medium-size/3-2.jpg" alt="nina's Product Image">
+                                                        </a>
+                                                        <div class="add-actions">
+                                                            <ul>
+                                                                <li><a href="/cart" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                                </li>
+                                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                                        class="lastudioicon-eye"></i></a>
+                                                                </li>
+                                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                                </li>
+                                                                <li><a href="/compare" data-bs-toggle="tooltip" data-placement="top" title="Add To Compare"><i class="lastudioicon-compare"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content text-center">
+                                                        <div class="product-desc_info">
+                                                            <h3 class="product-name"><a href="/single-product">Rest and Sleep Calming Spray</a></h3>
+                                                            <div class="price-box">
+                                                                <span class="new-price ms-0">$59.99</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-item">
+                                                <div class="single-product">
+                                                    <div class="product-img">
+                                                        <a href="/single-product">
+                                                            <img class="primary-img" src="images/products/medium-size/4-1.jpg" alt="nina's Product Image">
+                                                            <img class="secondary-img" src="images/products/medium-size/4-2.jpg" alt="nina's Product Image">
+                                                        </a>
+                                                        <span class="sticker">New</span>
+                                                        <div class="add-actions">
+                                                            <ul>
+                                                                <li><a href="/cart" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                                </li>
+                                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                                        class="lastudioicon-eye"></i></a>
+                                                                </li>
+                                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                                </li>
+                                                                <li><a href="/compare" data-bs-toggle="tooltip" data-placement="top" title="Add To Compare"><i class="lastudioicon-compare"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content text-center">
+                                                        <div class="product-desc_info">
+                                                            <h3 class="product-name"><a href="/single-product">InstaBoost Conditioning Color Masque</a></h3>
+                                                            <div class="price-box">
+                                                                <span class="old-price">$59.99</span>
+                                                                <span class="new-price">$49.99</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div> -->
+                                    <!-- <div id="skin-care" class="tab-pane" role="tabpanel">
+                                        <div class="yena-element-carousel product-slider" data-slick-options='{
+                                        "slidesToShow": 3,
+                                        "slidesToScroll": 1,
+                                        "infinite": false,
+                                        "arrows": false,
+                                        "dots": false,
+                                        "spaceBetween_xl": 60,
+                                        "rows" : 2
+                                        }' data-slick-responsive='[
+                                        {"breakpoint":992, "settings": {
+                                        "slidesToShow": 2
+                                        }},
+                                        {"breakpoint":576, "settings": {
+                                        "slidesToShow": 1
+                                        }}
+                                    ]'>
+
+                                            <div class="product-item">
+                                                <div class="single-product">
+                                                    <div class="product-img">
+                                                        <a href="/single-product">
+                                                            <img class="primary-img" src="images/products/medium-size/7-1.jpg" alt="nina's Product Image">
+                                                            <img class="secondary-img" src="images/products/medium-size/7-2.jpg" alt="nina's Product Image">
+                                                        </a>
+                                                        <div class="add-actions">
+                                                            <ul>
+                                                                <li><a href="/cart" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                                </li>
+                                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                                        class="lastudioicon-eye"></i></a>
+                                                                </li>
+                                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                                </li>
+                                                                <li><a href="/compare" data-bs-toggle="tooltip" data-placement="top" title="Add To Compare"><i class="lastudioicon-compare"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content text-center">
+                                                        <div class="product-desc_info">
+                                                            <h3 class="product-name"><a href="/single-product">Rest and Sleep Calming Spray</a></h3>
+                                                            <div class="price-box">
+                                                                <span class="new-price ms-0">$59.99</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-item">
+                                                <div class="single-product">
+                                                    <div class="product-img">
+                                                        <a href="/single-product">
+                                                            <img class="primary-img" src="images/products/medium-size/8-1.jpg" alt="nina's Product Image">
+                                                            <img class="secondary-img" src="images/products/medium-size/8-2.jpg" alt="nina's Product Image">
+                                                        </a>
+                                                        <div class="add-actions">
+                                                            <ul>
+                                                                <li><a href="/cart" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                                </li>
+                                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                                        class="lastudioicon-eye"></i></a>
+                                                                </li>
+                                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                                </li>
+                                                                <li><a href="/compare" data-bs-toggle="tooltip" data-placement="top" title="Add To Compare"><i class="lastudioicon-compare"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content text-center">
+                                                        <div class="product-desc_info">
+                                                            <h3 class="product-name"><a href="/single-product">InstaBoost Conditioning Color Masque</a></h3>
+                                                            <div class="price-box">
+                                                                <span class="old-price">$59.99</span>
+                                                                <span class="new-price">$49.99</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-item">
+                                                <div class="single-product">
+                                                    <div class="product-img">
+                                                        <a href="/single-product">
+                                                            <img class="primary-img" src="images/products/medium-size/1-1.jpg" alt="nina's Product Image">
+                                                            <img class="secondary-img" src="images/products/medium-size/1-2.jpg" alt="nina's Product Image">
+                                                        </a>
+                                                        <div class="add-actions">
+                                                            <ul>
+                                                                <li><a href="/cart" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                                </li>
+                                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                                        class="lastudioicon-eye"></i></a>
+                                                                </li>
+                                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                                </li>
+                                                                <li><a href="/compare" data-bs-toggle="tooltip" data-placement="top" title="Add To Compare"><i class="lastudioicon-compare"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content text-center">
+                                                        <div class="product-desc_info">
+                                                            <h3 class="product-name"><a href="/single-product">InstaBoost Conditioning Color Masque</a></h3>
+                                                            <div class="price-box">
+                                                                <span class="new-price ms-0">$20.00</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-item">
+                                                <div class="single-product">
+                                                    <div class="product-img">
+                                                        <a href="/single-product">
+                                                            <img class="primary-img" src="images/products/medium-size/2-1.jpg" alt="nina's Product Image">
+                                                            <img class="secondary-img" src="images/products/medium-size/2-2.jpg" alt="nina's Product Image">
+                                                        </a>
+                                                        <div class="add-actions">
+                                                            <ul>
+                                                                <li><a href="/cart" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                                </li>
+                                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                                        class="lastudioicon-eye"></i></a>
+                                                                </li>
+                                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                                </li>
+                                                                <li><a href="/compare" data-bs-toggle="tooltip" data-placement="top" title="Add To Compare"><i class="lastudioicon-compare"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content text-center">
+                                                        <div class="product-desc_info">
+                                                            <h3 class="product-name"><a href="/single-product">InstaBoost Conditioning Color Masque</a></h3>
+                                                            <div class="price-box">
+                                                                <span class="new-price ms-0">$59.99</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-item">
+                                                <div class="single-product">
+                                                    <div class="product-img">
+                                                        <a href="/single-product">
+                                                            <img class="primary-img" src="images/products/medium-size/3-1.jpg" alt="nina's Product Image">
+                                                            <img class="secondary-img" src="images/products/medium-size/3-2.jpg" alt="nina's Product Image">
+                                                        </a>
+                                                        <div class="add-actions">
+                                                            <ul>
+                                                                <li><a href="/cart" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                                </li>
+                                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                                        class="lastudioicon-eye"></i></a>
+                                                                </li>
+                                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                                </li>
+                                                                <li><a href="/compare" data-bs-toggle="tooltip" data-placement="top" title="Add To Compare"><i class="lastudioicon-compare"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content text-center">
+                                                        <div class="product-desc_info">
+                                                            <h3 class="product-name"><a href="/single-product">Rest and Sleep Calming Spray</a></h3>
+                                                            <div class="price-box">
+                                                                <span class="new-price ms-0">$59.99</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-item">
+                                                <div class="single-product">
+                                                    <div class="product-img">
+                                                        <a href="/single-product">
+                                                            <img class="primary-img" src="images/products/medium-size/4-1.jpg" alt="nina's Product Image">
+                                                            <img class="secondary-img" src="images/products/medium-size/4-2.jpg" alt="nina's Product Image">
+                                                        </a>
+                                                        <span class="sticker">New</span>
+                                                        <div class="add-actions">
+                                                            <ul>
+                                                                <li><a href="/cart" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                                </li>
+                                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                                        class="lastudioicon-eye"></i></a>
+                                                                </li>
+                                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                                </li>
+                                                                <li><a href="/compare" data-bs-toggle="tooltip" data-placement="top" title="Add To Compare"><i class="lastudioicon-compare"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content text-center">
+                                                        <div class="product-desc_info">
+                                                            <h3 class="product-name"><a href="/single-product">InstaBoost Conditioning Color Masque</a></h3>
+                                                            <div class="price-box">
+                                                                <span class="old-price">$59.99</span>
+                                                                <span class="new-price">$49.99</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-item">
+                                                <div class="single-product">
+                                                    <div class="product-img">
+                                                        <a href="/single-product">
+                                                            <img class="primary-img" src="images/products/medium-size/5-1.jpg" alt="nina's Product Image">
+                                                            <img class="secondary-img" src="images/products/medium-size/5-2.jpg" alt="nina's Product Image">
+                                                        </a>
+                                                        <div class="add-actions">
+                                                            <ul>
+                                                                <li><a href="/cart" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                                </li>
+                                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                                        class="lastudioicon-eye"></i></a>
+                                                                </li>
+                                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                                </li>
+                                                                <li><a href="/compare" data-bs-toggle="tooltip" data-placement="top" title="Add To Compare"><i class="lastudioicon-compare"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content text-center">
+                                                        <div class="product-desc_info">
+                                                            <h3 class="product-name"><a href="/single-product">InstaBoost Conditioning Color Masque</a></h3>
+                                                            <div class="price-box">
+                                                                <span class="new-price ms-0">$49.99</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-item">
+                                                <div class="single-product">
+                                                    <div class="product-img">
+                                                        <a href="/single-product">
+                                                            <img class="primary-img" src="images/products/medium-size/6-1.jpg" alt="nina's Product Image">
+                                                            <img class="secondary-img" src="images/products/medium-size/6-2.jpg" alt="nina's Product Image">
+                                                        </a>
+                                                        <div class="add-actions">
+                                                            <ul>
+                                                                <li><a href="/cart" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                                </li>
+                                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                                        class="lastudioicon-eye"></i></a>
+                                                                </li>
+                                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                                </li>
+                                                                <li><a href="/compare" data-bs-toggle="tooltip" data-placement="top" title="Add To Compare"><i class="lastudioicon-compare"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content text-center">
+                                                        <div class="product-desc_info">
+                                                            <h3 class="product-name"><a href="/single-product">InstaBoost Conditioning Color Masque</a></h3>
+                                                            <div class="price-box">
+                                                                <span class="new-price ms-0">$59.99</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="view-more-btn_wrap">
+                                <a class="yena-btn transparent-btn bokara-grey_color" href="javascript:void(0)">View More Products</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- yena's Product Tab Area Two End Here -->
+
+        <!-- Begin Banner Area Seven -->
+        <div class="banner-area banner-area-7 wow fadeInUp">
+            <div class="container-fluid p-0 overflow-hidden">
+                <div class="row gx-0">
+                    <div class="col-md-4">
+                        <div class="banner-item img-hover_effect">
+                            <div class="banner-img">
+                                <a href="/shop-fullwidth">
+                                    <img class="img-full" src="images/banner/2-2.jpg" alt="Banner Image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="banner-item img-hover_effect">
+                            <div class="banner-img">
+                                <a href="/shop-fullwidth">
+                                    <img class="img-full" src="images/banner/2-3.jpg" alt="Banner Image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="banner-item img-hover_effect">
+                            <div class="banner-img">
+                                <a href="/shop-fullwidth">
+                                    <img class="img-full" src="images/banner/2-4.jpg" alt="Banner Image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Banner Area Seven End Here -->
+
+        <!-- Begin yena's Product Area -->
+        <!-- <div class="yena-product_area wow fadeInUp">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title">
+                            <h2 class="heading text-uppercase font-style_italic mb-0">New Products</h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="yena-element-carousel product-slider" data-slick-options='{
+                        "slidesToShow": 3,
+                        "slidesToScroll": 1,
+                        "infinite": false,
+                        "arrows": false,
+                        "dots": false,
+                        "rows": 2,
+                        "spaceBetween_xl": 60
+                        }' data-slick-responsive='[
+                        {"breakpoint":992, "settings": {
+                        "slidesToShow": 2
+                        }},
+                        {"breakpoint":576, "settings": {
+                        "slidesToShow": 1
+                        }}
+                    ]'>
+
+                            <div class="product-item">
+                                <div class="single-product">
+                                    <div class="product-img">
+                                        <a href="/single-product">
+                                            <img class="primary-img" src="images/products/medium-size/3-1.jpg" alt="nina's Product Image">
+                                            <img class="secondary-img" src="images/products/medium-size/3-2.jpg" alt="nina's Product Image">
+                                        </a>
+                                        <div class="add-actions">
+                                            <ul>
+                                                <li><a href="/cart" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                </li>
+                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                        class="lastudioicon-eye"></i></a>
+                                                </li>
+                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                </li>
+                                                <li><a href="/compare" data-bs-toggle="tooltip" data-placement="top" title="Add To Compare"><i class="lastudioicon-compare"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product-content text-center">
+                                        <div class="product-desc_info">
+                                            <h3 class="product-name"><a href="/single-product">Rest and Sleep Calming Spray</a></h3>
+                                            <div class="price-box">
+                                                <span class="new-price ms-0">$59.99</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-item">
+                                <div class="single-product">
+                                    <div class="product-img">
+                                        <a href="/single-product">
+                                            <img class="primary-img" src="images/products/medium-size/4-1.jpg" alt="nina's Product Image">
+                                            <img class="secondary-img" src="images/products/medium-size/4-2.jpg" alt="nina's Product Image">
+                                        </a>
+                                        <span class="sticker">New</span>
+                                        <div class="add-actions">
+                                            <ul>
+                                                <li><a href="/cart" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                </li>
+                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                        class="lastudioicon-eye"></i></a>
+                                                </li>
+                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                </li>
+                                                <li><a href="/compare" data-bs-toggle="tooltip" data-placement="top" title="Add To Compare"><i class="lastudioicon-compare"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product-content text-center">
+                                        <div class="product-desc_info">
+                                            <h3 class="product-name"><a href="/single-product">InstaBoost Conditioning Color Masque</a></h3>
+                                            <div class="price-box">
+                                                <span class="old-price">$59.99</span>
+                                                <span class="new-price">$49.99</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-item">
+                                <div class="single-product">
+                                    <div class="product-img">
+                                        <a href="/single-product">
+                                            <img class="primary-img" src="images/products/medium-size/5-1.jpg" alt="nina's Product Image">
+                                            <img class="secondary-img" src="images/products/medium-size/5-2.jpg" alt="nina's Product Image">
+                                        </a>
+                                        <div class="add-actions">
+                                            <ul>
+                                                <li><a href="/cart" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                </li>
+                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                        class="lastudioicon-eye"></i></a>
+                                                </li>
+                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                </li>
+                                                <li><a href="/compare" data-bs-toggle="tooltip" data-placement="top" title="Add To Compare"><i class="lastudioicon-compare"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product-content text-center">
+                                        <div class="product-desc_info">
+                                            <h3 class="product-name"><a href="/single-product">InstaBoost Conditioning Color Masque</a></h3>
+                                            <div class="price-box">
+                                                <span class="new-price ms-0">$49.99</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-item">
+                                <div class="single-product">
+                                    <div class="product-img">
+                                        <a href="/single-product">
+                                            <img class="primary-img" src="images/products/medium-size/6-1.jpg" alt="nina's Product Image">
+                                            <img class="secondary-img" src="images/products/medium-size/6-2.jpg" alt="nina's Product Image">
+                                        </a>
+                                        <div class="add-actions">
+                                            <ul>
+                                                <li><a href="/cart" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                </li>
+                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                        class="lastudioicon-eye"></i></a>
+                                                </li>
+                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                </li>
+                                                <li><a href="/compare" data-bs-toggle="tooltip" data-placement="top" title="Add To Compare"><i class="lastudioicon-compare"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product-content text-center">
+                                        <div class="product-desc_info">
+                                            <h3 class="product-name"><a href="/single-product">InstaBoost Conditioning Color Masque</a></h3>
+                                            <div class="price-box">
+                                                <span class="new-price ms-0">$59.99</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-item">
+                                <div class="single-product">
+                                    <div class="product-img">
+                                        <a href="/single-product">
+                                            <img class="primary-img" src="images/products/medium-size/7-1.jpg" alt="nina's Product Image">
+                                            <img class="secondary-img" src="images/products/medium-size/7-2.jpg" alt="nina's Product Image">
+                                        </a>
+                                        <div class="add-actions">
+                                            <ul>
+                                                <li><a href="/cart" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                </li>
+                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                        class="lastudioicon-eye"></i></a>
+                                                </li>
+                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                </li>
+                                                <li><a href="/compare" data-bs-toggle="tooltip" data-placement="top" title="Add To Compare"><i class="lastudioicon-compare"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product-content text-center">
+                                        <div class="product-desc_info">
+                                            <h3 class="product-name"><a href="/single-product">Rest and Sleep Calming Spray</a></h3>
+                                            <div class="price-box">
+                                                <span class="new-price ms-0">$59.99</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-item">
+                                <div class="single-product">
+                                    <div class="product-img">
+                                        <a href="/single-product">
+                                            <img class="primary-img" src="images/products/medium-size/8-1.jpg" alt="nina's Product Image">
+                                            <img class="secondary-img" src="images/products/medium-size/8-2.jpg" alt="nina's Product Image">
+                                        </a>
+                                        <div class="add-actions">
+                                            <ul>
+                                                <li><a href="/cart" data-bs-toggle="tooltip" data-placement="top" title="Add To cart"><i class="lastudioicon-shopping-cart-3"></i></a>
+                                                </li>
+                                                <li class="yena's-view-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><a href="javascript:void(0)" data-bs-toggle="tooltip" data-placement="top" title="yena's View"><i
+                                                        class="lastudioicon-eye"></i></a>
+                                                </li>
+                                                <li><a href="/wishlist" data-bs-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="lastudioicon-heart-2"></i></a>
+                                                </li>
+                                                <li><a href="/compare" data-bs-toggle="tooltip" data-placement="top" title="Add To Compare"><i class="lastudioicon-compare"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product-content text-center">
+                                        <div class="product-desc_info">
+                                            <h3 class="product-name"><a href="/single-product">InstaBoost Conditioning Color Masque</a></h3>
+                                            <div class="price-box">
+                                                <span class="old-price">$59.99</span>
+                                                <span class="new-price">$49.99</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="view-more-btn_wrap">
+                            <a class="yena-btn transparent-btn bokara-grey_color" href="javascript:void(0)">View More Products</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+     
+        <!-- Begin Testimonial Area -->
+        <div class="testimonial-area testimonial-bg-1 parallax mt-100" data-bg="images/testimonial/bg/1.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="yena-element-carousel testimonial-slider custom-dots" data-slick-options='{
+                                "slidesToShow": 1,
+                                "slidesToScroll": 1,
+                                "infinite": false,
+                                "arrows": false,
+                                "dots": true,
+                                "spaceBetween": 30
+                                }' data-slick-responsive='[
+                                {"breakpoint":992, "settings": {
+                                "slidesToShow": 1
+                                }},
+                                {"breakpoint":480, "settings": {
+                                "slidesToShow": 1
+                            }}
+                        ]'>
+
+                            <div class="testimonial-item">
+                                <div class="client-info wow fadeInUp">
+                                    <p class="feedback font-style_italic">“Few Days After Using Nina's Glow Product My skin never remained the same.”</p>
+                                    <div class="img-area">
+                                        <img class="img-full" src="images/client (4).jpg" alt="yena's Client Image">
+                                    </div>
+                                    <h6 class="client-name font-style_italic">Elnora Atkins • Indiana</h6>
+                                </div>
+                            </div>
+                            <div class="testimonial-item">
+                                <div class="client-info wow fadeInUp">
+                                    <p class="feedback font-style_italic">“Few Days After Using Nina's Glow Product My skin never remained the same.”</p>
+                                    <div class="img-area">
+                                        <img class="img-full" src="images/client (5).jpg" alt="yena's Client Image">
+                                    </div>
+                                    <h6 class="client-name font-style_italic">Elnora Atkins • Indiana</h6>
+                                </div>
+                            </div>
+                            <div class="testimonial-item">
+                                <div class="client-info wow fadeInUp">
+                                    <p class="feedback font-style_italic">“Few Days After Using Nina's Glow Product My skin never remained the same.”</p>
+                                    <div class="img-area">
+                                        <img class="img-full" src="images/client (6).jpg" alt="yena's Client Image">
+                                    </div>
+                                    <h6 class="client-name font-style_italic">Elnora Atkins • Indiana</h6>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Testimonial Area End Here -->
+
+        <!-- Begin Latest Blog Area -->
+        <div class="latest-blog_area wow fadeInUp">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title">
+                            <h2 class="heading text-uppercase font-style_italic mb-0">Beauty blog</h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="yena-element-carousel blog-slider custom-dots blog-slider_dots specific-gutter" data-slick-options='{
+                        "slidesToShow": 2,
+                        "slidesToScroll": 1,
+                        "infinite": true,
+                        "arrows": false,
+                        "dots": true
+                        }' data-slick-responsive='[
+                        {"breakpoint":1200, "settings": {
+                        "slidesToShow": 1
+                        }}
+                    ]'>
+
+                            <div class="blog-item">
+                                <div class="single-blog">
+                                    <div class="blog-img">
+                                        <div class="inner-img img-zoom_effect">
+                                            <a href="blog-single-post.html">
+                                                <img class="w-100" src="images/client2.jpg" alt="yena's Blog Image">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="blog-content">
+                                        <span>Uncategorized</span>
+                                        <h2 class="title font-style_italic"><a href="blog-single-post.html">20 Gift Ideas for Your Stressed Out Loved One</a></h2>
+                                        <div class="post-meta">
+                                            <ul>
+                                                <li>By <a href="javascript:void(0)">HasTech</a></li>
+                                                <li>December 23, 2020</li>
+                                            </ul>
+                                        </div>
+                                        <p class="short-desc">Suspendisse lectus augue, pulvinar vitae porttitor quis, rhoncus sed lorem. Maecenas mattis, libero sed…</p>
+                                        <a class="yena-btn yena-btn_sm transparent-btn whisper-color" href="blog-single-post.html">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="blog-item">
+                                <div class="single-blog">
+                                    <div class="blog-img">
+                                        <div class="inner-img img-zoom_effect">
+                                            <a href="blog-single-post.html">
+                                                <img class="w-100" src="images/client (6).jpg" alt="yena's Blog Image">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="blog-content">
+                                        <span>Uncategorized</span>
+                                        <h2 class="title font-style_italic"><a href="blog-single-post.html">20 Gift Ideas for Your Stressed Out Loved One</a></h2>
+                                        <div class="post-meta">
+                                            <ul>
+                                                <li>By <a href="javascript:void(0)">HasTech</a></li>
+                                                <li>December 23, 2020</li>
+                                            </ul>
+                                        </div>
+                                        <p class="short-desc">Suspendisse lectus augue, pulvinar vitae porttitor quis, rhoncus sed lorem. Maecenas mattis, libero sed…</p>
+                                        <a class="yena-btn yena-btn_sm transparent-btn whisper-color" href="blog-single-post.html">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="blog-item">
+                                <div class="single-blog">
+                                    <div class="blog-img">
+                                        <div class="inner-img img-zoom_effect">
+                                            <a href="blog-single-post.html">
+                                                <img class="w-100" src="images/blog/medium-size/3.jpg" alt="yena's Blog Image">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="blog-content">
+                                        <span>Uncategorized</span>
+                                        <h2 class="title font-style_italic"><a href="blog-single-post.html">20 Gift Ideas for Your Stressed Out Loved One</a></h2>
+                                        <div class="post-meta">
+                                            <ul>
+                                                <li>By <a href="javascript:void(0)">HasTech</a></li>
+                                                <li>December 23, 2020</li>
+                                            </ul>
+                                        </div>
+                                        <p class="short-desc">Suspendisse lectus augue, pulvinar vitae porttitor quis, rhoncus sed lorem. Maecenas mattis, libero sed…</p>
+                                        <a class="yena-btn yena-btn_sm transparent-btn whisper-color" href="blog-single-post.html">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Latest Blog Area End Here -->
+
+        <!-- Begin Banner Area Five -->
+        <!-- <div class="banner-area-5 banner-bg-1 parallax" data-bg="images/banner/bg/1.jpg">
+            <div class="container h-100">
+                <div class="row h-100">
+                    <div class="col-lg-12">
+                        <div class="banner-item h-100">
+                            <div class="banner-content h-100 wow fadeInUp">
+                                <h2 class="title white-text_color text-uppercase font-style_italic">Secret of beautiful skin</h2>
+                                <div class="popup-btn">
+                                    <a class="popup-vimeo" href="https://player.vimeo.com/video/172601404?autoplay=1"><i class="dlicon media-1_button-play"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- Banner Area Five End Here -->
+        <%- include("partials/footer") -%>

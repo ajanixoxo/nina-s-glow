@@ -1,0 +1,21 @@
+HTTrack3.49-2+htsswf+htsjava launched on Fri, 10 Nov 2023 13:02:42 at https://htmldemo.net/yena/yena/index-3.html +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar +https://htmldemo.net/yena/yena/index-3.html
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F  -%F  -%l "en, *" https://htmldemo.net/yena/yena/index-3.html -O1 "C:\My Web Sites\new wbsite" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar +https://htmldemo.net/yena/yena/index-3.html )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+13:05:32	Error: 	"Not Found" (404) at link https://htmldemo.net/yena/yena/order-tracking.html.html (from https://htmldemo.net/yena/yena/index-3.html)
+13:05:32	Error: 	"Not Found" (404) at link https://htmldemo.net/yena/yena/assets/fonts/LaStudioIcons.woff (from https://htmldemo.net/yena/yena/assets/css/lastudioicon.min.css)
+13:05:33	Error: 	"Not Found" (404) at link https://htmldemo.net/yena/yena/assets/fonts/LaStudioIcons.svg (from https://htmldemo.net/yena/yena/assets/css/lastudioicon.min.css)
+13:05:33	Error: 	"Not Found" (404) at link https://htmldemo.net/yena/yena/assets/fonts/LaStudioBrands.woff (from https://htmldemo.net/yena/yena/assets/css/lastudioicon.min.css)
+13:05:33	Error: 	"Not Found" (404) at link https://htmldemo.net/yena/yena/assets/fonts/LaStudioBrands.svg (from https://htmldemo.net/yena/yena/assets/css/lastudioicon.min.css)
+13:05:33	Error: 	"Not Found" (404) at link https://htmldemo.net/yena/yena/assets/img/vimeo-play.png (from https://htmldemo.net/yena/yena/assets/css/lightgallery.min.css)
+13:05:33	Error: 	"Not Found" (404) at link https://htmldemo.net/yena/yena/assets/img/video-play.png (from https://htmldemo.net/yena/yena/assets/css/lightgallery.min.css)
+13:05:33	Error: 	"Not Found" (404) at link https://htmldemo.net/yena/yena/assets/img/youtube-play.png (from https://htmldemo.net/yena/yena/assets/css/lightgallery.min.css)
+13:05:33	Error: 	"Not Found" (404) at link https://htmldemo.net/yena/yena/images/light-gallery/loading.gif (from https://htmldemo.net/yena/yena/assets/css/lightgallery.min.css)
+13:05:33	Error: 	"Not Found" (404) at link https://htmldemo.net/yena/yena/assets/images/slider/bg/8-1.jpg (from https://htmldemo.net/yena/yena/assets/css/style.css)
+
+HTTrack Website Copier/3.49-2 mirror complete in 2 minutes 51 seconds : 284 links scanned, 273 files written (14012818 bytes overall) [8729189 bytes received at 51047 bytes/sec], 6358379 bytes transferred using HTTP compression in 90 files, ratio 13%, 40.5 requests per connection
+(10 errors, 0 warnings, 0 messages)
