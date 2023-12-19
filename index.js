@@ -32,7 +32,7 @@ mongoose.connect('mongodb://localhost:27017/SkinCareDB', { useUnifiedTopology: t
   .then(() => {
     console.log('Connected to MongoDB');
     // Your server listening logic can be placed here
-    app.listen(3500, () => {
+    app.listen(3000, () => {
       console.log('Server is running on port 3500');
     });
   })
