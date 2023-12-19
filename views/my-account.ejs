@@ -85,38 +85,88 @@
                                 </div>
                                 <div class="tab-pane fade" id="account-address" role="tabpanel" aria-labelledby="account-address-tab">
                                     <div class="myaccount-address">
-                                        <p>The following addresses will be used on the checkout page by default.</p>
-                                        <div class="row">
-                                            <div class="col">
-                                                <h4 class="small-title">BILLING ADDRESS</h4>
-                                                <address>
-                                                    1234 Heaven Stress, Beverly Hill OldYork UnitedState of Lorem
-                                                </address>
-                                            </div>
-                                            <div class="col">
-                                                <h4 class="small-title">SHIPPING ADDRESS</h4>
-                                                <address>
-                                                    1234 Heaven Stress, Beverly Hill OldYork UnitedState of Lorem
-                                                </address>
-                                            </div>
+                                        <div class="col-lg-6 col-12">
+                                            <form method="post" action="/billing-details">
+                                                <div class="checkbox-form">
+                                                    <h3>Billing Details</h3>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="country-select clearfix">
+                                                                <label>Country <span class="required">*</span></label>
+                                                                <input placeholder="Country" type="text" name="country" value="<%= user_details.country%>">
+                                                           
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="checkout-form-list">
+                                                                <label>Full Name <span class="required">*</span></label>
+                                                                <input placeholder="" type="text" name="full_name" value="<%= user_details.Full_Name %>">
+                                                            </div>
+                                                        </div>
+                                                    
+                                                        <div class="col-md-12">
+                                                            <div class="checkout-form-list">
+                                                                <label>Address <span class="required">*</span></label>
+                                                                <input placeholder="Street address" type="text" name="address" value="<%= user_details.Address%>">
+                                                            </div>
+                                                        </div>
+                                                     
+                                                        <div class="col-md-12">
+                                                            <div class="checkout-form-list">
+                                                                <label>Town / City <span class="required">*</span></label>
+                                                                <input type="text" name="city" value="<%= user_details.City %>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="checkout-form-list">
+                                                                <label>State  <span class="required">*</span></label>
+                                                                <input placeholder="" type="text" name="state" value="<%= user_details.State %>">
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-md-6">
+                                                            <div class="checkout-form-list">
+                                                                <label>Email Address <span class="required">*</span></label>
+                                                                <input placeholder="" type="email" name="email" id="email-address" value="<%= user_details.Email %>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="checkout-form-list">
+                                                                <label>Phone <span class="required">*</span></label>
+                                                                <input type="text" name="phone_number" value="<%= user_details.PhoneNo %>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                          
+                    
+                                                            <!-- <div class="check-box">
+                                                        <input type="checkbox" id="remember_me">
+                                                        <label for="remember_me">Remember me</label>
+                                                    </div> -->
+                    
+                                                    <div class="order-button-payment">
+                                                        <input value="Save" type="submit">
+                                                    </div>
+                                                        </div>
+                                                    </div>
+                                               
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="account-details" role="tabpanel" aria-labelledby="account-details-tab">
                                     <div class="myaccount-details">
-                                        <form action="#" class="yena-form">
+                                        <form action="/change-user" class="yena-form">
                                             <div class="yena-form-inner">
                                                 <div class="single-input single-input-half">
-                                                    <label for="account-details-firstname">First Name*</label>
-                                                    <input type="text" id="account-details-firstname">
+                                                    <label for="account-details-firstname">Full Name*</label>
+                                                    <input type="text" id="account-details-firstname" value="<%= user_details.Full_Name %>">
                                                 </div>
-                                                <div class="single-input single-input-half">
-                                                    <label for="account-details-lastname">Last Name*</label>
-                                                    <input type="text" id="account-details-lastname">
-                                                </div>
+                                              
                                                 <div class="single-input">
                                                     <label for="account-details-email">Email*</label>
-                                                    <input type="email" id="account-details-email">
+                                                    <input type="email" id="account-details-email" value="<%= user_details.Email %>">
                                                 </div>
                                                 <div class="single-input">
                                                     <label for="account-details-oldpass">Current Password(leave blank to leave

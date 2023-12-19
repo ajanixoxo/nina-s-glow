@@ -38,9 +38,10 @@
             </div>
             <div class="row">
                 <div class="col-lg-6 col-12">
-                    <form method="post" action="/checkout">
+                    <form method="post" action="/checkout-payment">
                         <div class="checkbox-form">
-                            <h3>Billing Details</h3>
+                            <h3>Your  Payment was sucessful send Billing details</h3>
+                           
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="country-select clearfix">
@@ -102,7 +103,7 @@
                                 </div> -->
 
                                     <div class="order-button-payment">
-                                        <input value="Save" type="submit">
+                                        <input value="Send" type="submit">
                                     </div>
                                 </div>
                             </div>
@@ -126,7 +127,8 @@
                                         <% cartItems.map(item=> { %>
                                             <tr class="cart_item">
                                                 <td class="cart-product-name">
-                                                    <%= item.product_name %>
+                                                    <%= item.product_name %><strong class="product-quantity">
+                                                            × 3</strong>
                                                 </td>
                                                 <% if (item.product_sales) { %>
                                                     <td class="cart-product-total"><span class="amount">₦<%= (0.75 *
@@ -160,74 +162,10 @@
                         </div>
                         <div class="payment-method">
                             <div class="payment-accordion">
-                                <div id="accordion">
-                                    <div class="card">
-                                        <div class="card-header" id="#payment-1">
-                                            <h5 class="panel-title">
-                                                <a href="javascript:void(0)" class="" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseOne" aria-expanded="true"
-                                                    aria-controls="collapseOne">
-                                                    Direct Bank Transfer.
-                                                </a>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
-                                            <div class="card-body">
-                                                <p>Make your payment directly into our bank account. Please use your
-                                                    Order
-                                                    ID as the payment
-                                                    reference. Your order won’t be shipped until the funds have cleared
-                                                    in
-                                                    our account.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" id="#payment-2">
-                                            <h5 class="panel-title">
-                                                <a href="javascript:void(0)" class="collapsed" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseTwo" aria-expanded="false"
-                                                    aria-controls="collapseTwo">
-                                                    Cheque Payment
-                                                </a>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
-                                            <div class="card-body">
-                                                <p>Make your payment directly into our bank account. Please use your
-                                                    Order
-                                                    ID as the payment
-                                                    reference. Your order won’t be shipped until the funds have cleared
-                                                    in
-                                                    our account.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" id="#payment-3">
-                                            <h5 class="panel-title">
-                                                <a href="javascript:void(0)" class="collapsed" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseThree" aria-expanded="false"
-                                                    aria-controls="collapseThree">
-                                                    PayPal
-                                                </a>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
-                                            <div class="card-body">
-                                                <p>Make your payment directly into our bank account. Please use your
-                                                    Order
-                                                    ID as the payment
-                                                    reference. Your order won’t be shipped until the funds have cleared
-                                                    in
-                                                    our account.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                              
 
-                                <div class="order-button-payment">
-                                    <!-- <form method="post" action="/checkout-payment" id="paymentForm"> -->
+                                <!-- <div class="order-button-payment">
+                                    <form method="post" action="/checkout-payment" id="paymentForm">
                                     <form>
                                         <input type="hidden" name="public_key"
                                             value="FLWPUBK_TEST-49c19d4f3d4d1a782dd4f5a51b36e511-X" />
@@ -237,20 +175,20 @@
                                         <input type="hidden" name="redirect_url" value="http://localhost:3500" />
                                         <input type="hidden" name="meta[token]" value="54" />
                                         <input type="hidden" id="customer_name" name="customer_name"
-                                            value="<%= user.name %>" />
+                                            value="<%# user.name %>" />
                                         <input type="hidden" id="customer_id" name="customer_id"
-                                            value=" <%=user._id %>" />
+                                            value=" <%#user._id %>" />
                                         <input type="hidden" id="customer_email" name="customer_email"
-                                            value="<%= user.username %>" />
+                                            value="<%# user.username %>" />
                                         <input type="hidden" id="customer_phone" name="customer_email"
-                                            value="<%= user.phoneNo %>" />
+                                            value="<%# user.phoneNo %>" />
 
                                         <button type="button" id="start-payment-button" onclick="makePayment()">Pay
                                             Now</button>
-                                        <!-- <input value="Place order" type="submit"> -->
+                                        <input value="Place order" type="submit"> 
                                 </div>
                                 </form>
-                            </div>
+                            </div> --->
 
                         </div>
                     </div>
@@ -260,73 +198,7 @@
     </div>
     <!-- Yena's Checkout Area End Here -->
 
-    <script>
-        const amount = document.getElementById("amount").value
-        const username = document.getElementById("customer_name").value
-        const userId = document.getElementById("customer_id").value
-        const email = document.getElementById("customer_email").value
-        const phone = document.getElementById("customer_phone").value
-        console.log(amount, username, email, phone, userId)
-        const generateTransactionReference = () => {
-            // Use a combination of a prefix, timestamp, and random number for uniqueness
-            const prefix = 'txref-';
-            const timestamp = Date.now();
-            const random = Math.floor(Math.random() * 100000);
-
-            return `${prefix}_${timestamp}_${random}`;
-        };
-
-        // Example usage
-        const transactionReference = generateTransactionReference();
-        function makePayment() {
-            FlutterwaveCheckout({
-                public_key: "FLWPUBK_TEST-49c19d4f3d4d1a782dd4f5a51b36e511-X",
-                tx_ref: transactionReference,
-                amount: amount,
-                currency: "NGN",
-                payment_options: "card, banktransfer, ussd",
-                redirect_url: "http://localhost:3500/send-orders",
-                meta: {
-                    source: "docs-inline-test",
-                    consumer_mac: "92a3-912ba-1192a",
-                },
-                customer: {
-                    email: email,
-                    phone_number: 0 + phone,
-                    name: username,
-                },
-                customizations: {
-                    title: "Nina's Glow",
-                    description: "Payment for products",
-                    logo: "https://github.com/ajanixoxo/Nina-s-new-Website-Design/blob/main/images/NINA'S%20GLOW%20LOGO.jpg",
-                },
-            });
-        }
-
-        //      function makePayment() {
-        //         FlutterwaveCheckout({
-        //             public_key: "FLWPUBK_TEST-49c19d4f3d4d1a782dd4f5a51b36e511-X",
-        //             tx_ref:"txref-DI0NzMx12" ,
-        //             amount: amount,
-        //             currency: "NGN",
-        //             payment_options: "card, banktransfer, ussd",
-        //             meta: {
-        //                 source: "docs-inline-test",
-        //                 consumer_mac: "92a3-912ba-1192a",
-        //             },
-        //             customer: {
-        //                 email: username,
-        //                 phone_number: phone,
-        //                 name: email,
-        //             },
-        //             customizations: {
-        //                 title: "Nina's Glow",
-        //                 description: "Payment for products",
-        //                 logo: "https://github.com/ajanixoxo/Nina-s-new-Website-Design/blob/main/images/headerr.jpg",
-        //             },
-        //         });
-        // }
-    </script>
+    
 
     <!-- Begin Footer Area -->
     <%- include("partials/footer") -%>

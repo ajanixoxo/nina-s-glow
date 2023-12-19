@@ -16,6 +16,8 @@ const MongoStore = require('connect-mongo');
 const fs = require('fs')
 const flash = require('express-flash');
 const { functions } = require('lodash');
+const Sequelize = require('sequelize');
+const { Op } = require('sequelize');
 
 app.use(flash());
 
@@ -26,10 +28,18 @@ app.use(express.static("public"))
 
 
 
-let conn = mongoose.connect('mongodb://localhost:27017/SkinCareDB');
-if (conn) {
-  console.log('Connected')
-}
+mongoose.connect('mongodb://localhost:27017/SkinCareDB', { useUnifiedTopology: true })
+  .then(() => {
+    console.log('Connected to MongoDB');
+    // Your server listening logic can be placed here
+    app.listen(3500, () => {
+      console.log('Server is running on port 3500');
+    });
+  })
+  .catch((err) => {
+    console.error('Error connecting to MongoDB:', err.message);
+  });
+
 
 const userSchema = new mongoose.Schema({
   name: String,
@@ -42,6 +52,8 @@ const userSchema = new mongoose.Schema({
       product_id: String,
       product_price: Number,
       product_img: String,
+      product_sales:Boolean,
+      product_quantity:Number,
     }
   ],
   phoneNo: Number,
@@ -91,9 +103,11 @@ const productSchema = new mongoose.Schema({
       required: true,
     },
   },
+  sales:Boolean,
 
   // You can add more fields based on your requirements
 });
+productSchema.index({ name: 'text', description: 'text' });
 // Multer setup
 const storage = multer.memoryStorage(); // Store files in memory
 const upload = multer({ storage: storage }); // Set file size limit
@@ -120,10 +134,7 @@ const UserModel = mongoose.model("UserModel", userSchema);
 const AdminModel = mongoose.model("AdminModel", adminSchema);
 passport.use(UserModel.createStrategy())
 
-// passport.use(AdminModel.createStrategy())
 
-// GOOGLE_CLIENT_ID = "408923561161-8484gr75vjcv72qallehvknndv6hbo8o.apps.googleusercontent.com"
-// GOOGLE_CLIENT_SECRET = "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"
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -153,35 +164,10 @@ app.use((req, res, next) => {
   next();
 });
 
-const cartFunction = async (req, res, next) => {
-  try {
-    if (req.isAuthenticated()) {
-      const userId = req.user._id;
-      const user = await UserModel.findById(userId);
 
-      if (!user) {
-        console.log("User not found")
-        res.locals.cartItems = []
-      } else {
-        const cartItems = user.carts || []
-        const total = (price) => {
-          cartItems.map(item => {
-            price += item.product_price
-          })
-          return price
-        }
-      }
-    } else {
-      res.locals.cartItems = []
-    }
-    next()
-  } catch (err) {
-    console.error("Error retrieving cart items:" + err)
-    res.locals.cartItems = []
-    next()
-  }
-}
-app.use(cartFunction)
+
+
+
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }));
 
@@ -199,7 +185,7 @@ app.get('/auth/google/callback',
 app.get('/', async (req, res) => {
   try {
     const products = await Product.find({})
-    res.render('index', { products: products });
+    res.render('index', { products: products  , req: req});
   }
   catch (err) {
     console.log(err);
@@ -211,7 +197,7 @@ app.get('/', async (req, res) => {
 
 
 app.get('/login-register', (req, res, next) => {
-  res.render('login-register', { user: req.user, message: req.flash('error') })
+  res.render('login-register', { user: req.user, message: req.flash('error') , req: req})
 })
 
 app.post('/login-register', (req, res, next) => {
@@ -274,22 +260,96 @@ app.use((req, res, next) => {
 
 
 
-app.get('/my-account', session({ secret: 'secret wa niyen oo', resave: true, saveUninitialized: true }), ensureAuthenticatedUser, (req, res) => {
+app.get('/my-account', session({ secret: 'secret wa niyen oo', resave: true, saveUninitialized: true }), ensureAuthenticatedUser, async(req, res) => {
   // Check if there is a username passed in the query parameters
   const username = req.query.username || (req.isAuthenticated() ? req.user.username : null);
-  res.render('my-account', { username: username });
+  try {
+    if (req.isAuthenticated()) {
+      const userId = req.user._id;
+      const user = await UserModel.findById(userId);
+
+      if (!user) {
+        console.log("User not found")
+        return res.status(404).send("Please login or register")
+      }
+      const user_details = user.billingDetails
+      const cartItems = user.carts || []
+      const total = (price) => {
+        cartItems.map(item => {
+          price += item.product_price
+        })
+        return price
+      }
+      res.render("my-account", { cartItems: cartItems, total: total, user_details: user_details, username: username, req: req  })
+    } else {
+      res.send("Login First")
+    }
+
+  } catch (err) {
+    console.error("Error :" + err)
+    res.status(500).send("Internal Server Error")
+  }
+
 });
 
 app.post('/my-account', () => {
+
+})
+app.get('/billing-details', () => {
+  res.redirect('/my-account', {req: req})
+})
+app.post('/billing-details', async(req, res) => {
+  try {
+    if (req.isAuthenticated()) {
+      const userId = req.user._id;
+      const user = await UserModel.findById(userId);
+      const { country, full_name, address, city, state, email, phone_number } = req.body
+
+      let billingDetails = {
+        country: country,
+        Full_Name: full_name,
+        Address: address,
+        City: city,
+        State: address,
+        Email: email,
+        PhoneNo: phone_number,
+      }
+      user.billingDetails = billingDetails;
+
+      // Save the updated user
+      const cartItems = user.carts || []
+      await user.save();
+
+      res.redirect('/my-account')
+
+
+
+    } else {
+      res.send("Login First")
+      
+    }
+
+  } catch (err) {
+    console.error("Error retrieving cart items:" + err)
+    res.status(500).send("Internal Server Error")
+  }
+})
+
+app.get('/change-user', async (req, res) =>{
+res.redirect('/my-account', {req: req})
+})
+app.post('/change-user', async (req, res) =>{
 
 })
 
 
 
 
+let admin = process.env.ADMIN_NAME
+let admin_password = process.env.ADMIN_PASSWORD
 // Middleware for administrators
 const adminAuth = basicAuth({
-  users: { 'nina': '123444' }, // Replace with your actual admin credentials
+  users: { admin: admin_password }, // Replace with your actual admin credentials
   challenge: true,
   unauthorizedResponse: 'Unauthorized Access!'
 });
@@ -313,7 +373,7 @@ app.get('/product-add', adminAuth, (req, res) => {
   res.render('product-add')
 })
 app.post('/add-product', adminAuth, upload.single('productImage'), function (req, res, next) {
-  const { product_name, desc, price, quantity } = req.body;
+  const { product_name, desc, price, quantity, onSale} = req.body;
 
   const productImage = {
     data: req.file.buffer,
@@ -327,6 +387,7 @@ app.post('/add-product', adminAuth, upload.single('productImage'), function (req
     price: price,
     quantity: quantity,
     image: productImage,
+    sales: onSale === 'on',
   };
 
   const Product = mongoose.model("Product", productSchema);
@@ -347,7 +408,7 @@ app.post('/add-product', adminAuth, upload.single('productImage'), function (req
 app.get('/shop-fullwidth', async (req, res) => {
   try {
     const products = await Product.find({});
-    res.render('shop-fullwidth', { products: products });
+    res.render('shop-fullwidth', { products: products , req: req});
   } catch (err) {
     console.error(err);
     res.render('error', { error: err });
@@ -368,7 +429,7 @@ app.get('/product/:productName', (req, res) => {
       if (!foundProduct) {
         res.render('error-404')
       } else {
-        res.render("single-product", { product: foundProduct });
+        res.render("single-product", { product: foundProduct , req: req});
       }
     }).catch(err => {
       console.log(err);
@@ -378,7 +439,8 @@ app.get('/product/:productName', (req, res) => {
 app.get('/product', async (req, res) => {
   try {
     const products = await Product.find({});
-    res.render('shop-fullwidth', { products: products });
+    res.render('shop-fullwidth', { products: products, req: req });
+
   } catch (err) {
     console.error(err);
     res.render('error-404', { error: err });
@@ -390,11 +452,13 @@ app.post('/product', (req, res) => {
     product_id: req.body.productId,
     product_price: req.body.productPrice,
     product_img: req.body.productImg,
+    product_sales: req.body.productSales,
   };
 
 
+
   const userId = req.user._id // Assuming you are using Passport and the user is authenticated
-  console.log(userId)
+  console.log(newCart)
   if (req.isAuthenticated()) {
     UserModel.findOneAndUpdate(
       { _id: userId },
@@ -423,19 +487,45 @@ app.get('/cart', async (req, res) => {
     if (req.isAuthenticated()) {
       const userId = req.user._id;
       const user = await UserModel.findById(userId);
+      const cartFunction = async (req, res) => {
+
+        let cartTotal = 0
+
+
+        const cartItems = user.carts || [];
+        cartTotal = cartItems.length; // Corrected method to get the length of the array
+        //no need for an else statement, cartTotal is already initialized to 0
+        return cartTotal
+      };
+      // Invoke the function
+      console.log(cartFunction());
 
       if (!user) {
         console.log("User not found")
         return res.status(404).send("Please login or register")
       }
       const cartItems = user.carts || []
+      const salesItems = (sales_price) => {
+       cartItems.map(item => {
+          if(item.product_sales)
+            sales_price += item .product_price * 0.75
+         
+        })
+        return sales_price
+      }
+    
+      
       const total = (price) => {
         cartItems.map(item => {
-          price += item.product_price
+          if(!item.product_sales)
+          price += item.product_price + salesItems(0)
+          
         })
+       
         return price
       }
-      res.render("cart", { cartItems: cartItems, total: total })
+      console.log(total(0))
+      res.render("cart", { cartItems: cartItems, total: total , req: req})
     } else {
       res.render("cart2")
     }
@@ -471,20 +561,391 @@ app.post('/remove-cart', async (req, res) => {
     res.status(500).render('error-500', { error: err });
   }
 });
+app.get('/checkout', async (req, res) => {
+  if (req.user.billingDetails === null) {
+    try {
+      if (req.isAuthenticated()) {
+        const userId = req.user._id;
+        const user = await UserModel.findById(userId);
+         
+        if (!user) {
+          console.log("User not found")
+          return res.status(404).send("Please login or register")
+        }
+        const user_details = {
+          Full_Name: req.user.name,
+          Email: req.user.username,
+          PhoneNo: req.user.phoneNo,
+          City:"",
+          State:"",
+          Address:"",
+          country:"",
 
-app.get('/search', (req, res) => {
-  res.render('search')
+        }
+        const cartItems = user.carts || []
+        const salesItems = (sales_price) => {
+         cartItems.map(item => {
+            if(item.product_sales)
+              sales_price += item .product_price * 0.75
+           
+          })
+          return sales_price
+        }
+      
+        
+        const total = (price) => {
+          cartItems.map(item => {
+            if(!item.product_sales)
+            price += item.product_price + salesItems(0)
+            
+          })
+         
+          return price
+        }
+        res.render("checkout", { cartItems: cartItems, total: total, user_details: user_details, user:user, req: req })
+      } else {
+        res.send("Login First")
+      }
+
+    } catch (err) {
+      console.error("Error retrieving cart items:" + err)
+      res.status(500).send("Internal Server Error")
+    }
+  }
+  else {
+    try {
+      if (req.isAuthenticated()) {
+        const userId = req.user._id;
+        const user = await UserModel.findById(userId);
+
+        if (!user) {
+          console.log("User not found")
+          return res.status(404).send("Please login or register")
+        }
+        const user_details = user.billingDetails
+        const cartItems = user.carts || []
+        const salesItems = (sales_price) => {
+         cartItems.map(item => {
+            if(item.product_sales)
+              sales_price += item .product_price * 0.75
+           
+          })
+          return sales_price
+        }
+      
+        
+        const total = (price) => {
+          cartItems.map(item => {
+            if(!item.product_sales)
+            price += item.product_price + salesItems(0)
+            
+          })
+         
+          return price
+        }
+        res.render("checkout", { cartItems: cartItems, total: total, user_details: user_details, req: req })
+      } else {
+        res.send("Login First")
+      }
+
+    } catch (err) {
+      console.error("Error retrieving cart items:" + err)
+      res.status(500).send("Internal Server Error")
+    }
+  }
+
+
 })
-app.post('/search', (req, res) => {
+app.post('/checkout', async (req, res) => {
 
-}
-);
+  try {
+    if (req.isAuthenticated()) {
+      const userId = req.user._id;
+      const user = await UserModel.findById(userId);
+      const { country, full_name, address, city, state, email, phone_number } = req.body
+
+      let billingDetails = {
+        country: country,
+        Full_Name: full_name,
+        Address: address,
+        City: city,
+        State: address,
+        Email: email,
+        PhoneNo: phone_number,
+      }
+      user.billingDetails = billingDetails;
+
+      // Save the updated user
+      const cartItems = user.carts || []
+      await user.save();
+
+      res.render("checkout", { cartItems: cartItems, total: total, user_details: user_details, req: req })
+
+
+
+    } else {
+      res.send("Login First")
+    }
+
+  } catch (err) {
+    console.error("Error retrieving cart items:" + err)
+    res.status(500).send("Internal Server Error")
+  }
+})
+app.get('/send-orders', async (req, res) => {
+  if (req.user.billingDetails === null) {
+    try {
+      if (req.isAuthenticated()) {
+        const userId = req.user._id;
+        const user = await UserModel.findById(userId);
+         
+        if (!user) {
+          console.log("User not found")
+          return res.status(404).send("Please login or register")
+        }
+        const user_details = {
+          Full_Name: req.user.name,
+          Email: req.user.username,
+          PhoneNo: req.user.phoneNo,
+          City:"",
+          State:"",
+          Address:"",
+          country:"",
+
+        }
+        const cartItems = user.carts || []
+        const salesItems = (sales_price) => {
+         cartItems.map(item => {
+            if(item.product_sales)
+              sales_price += item .product_price * 0.75
+           
+          })
+          return sales_price
+        }
+      
+        
+        const total = (price) => {
+          cartItems.map(item => {
+            if(!item.product_sales)
+            price += item.product_price + salesItems(0)
+            
+          })
+         
+          return price
+        }
+        res.render("send-orders", { cartItems: cartItems, total: total, user_details: user_details, user:user , req: req})
+      } else {
+        res.send("Login First")
+      }
+
+    } catch (err) {
+      console.error("Error retrieving cart items:" + err)
+      res.status(500).send("Internal Server Error")
+    }
+  }
+  else {
+    try {
+      if (req.isAuthenticated()) {
+        const userId = req.user._id;
+        const user = await UserModel.findById(userId);
+
+        if (!user) {
+          console.log("User not found")
+          return res.status(404).send("Please login or register")
+        }
+        const user_details = user.billingDetails
+        const cartItems = user.carts || []
+        const salesItems = (sales_price) => {
+         cartItems.map(item => {
+            if(item.product_sales)
+              sales_price += item .product_price * 0.75
+           
+          })
+          return sales_price
+        }
+      
+        
+        const total = (price) => {
+          cartItems.map(item => {
+            if(!item.product_sales)
+            price += item.product_price + salesItems(0)
+            
+          })
+         
+          return price
+        }
+        res.render("send-orders", { cartItems: cartItems, total: total, user_details: user_details, req: req })
+      } else {
+        res.send("Login First")
+      }
+
+    } catch (err) {
+      console.error("Error retrieving cart items:" + err)
+      res.status(500).send("Internal Server Error")
+    }
+  }
+
+
+})
+app.get('/checkout-payment', async (req, res) => {
+  res.redirect('/send-orders')
+})
+app.post('/checkout-payment', async(req, res) => {
+  // Process the form submission and send the email
+  const userId = req.user._id;
+  console.log(userId);
+  try {
+    if (req.isAuthenticated()) {
+      const userId = req.user._id;
+      const user = await UserModel.findById(userId);
+      let country = user.billingDetails.country
+      let Full_Name = user.billingDetails.Full_Name
+      let Address = user.billingDetails.Address
+      let city = user.billingDetails.City
+      let State = user.billingDetails.State
+      let Email = user.billingDetails.Email
+      let Phone_Number = user.billingDetails.PhoneNo
+      // Save the updated user
+
+      const cartItems = user.carts || []
+      const orderProducts = cartItems.map(item => item.product_name);
+      const total = (price) => {
+        cartItems.map(item => {
+          price += item.product_price
+        })
+        return price
+      }
+      //   const orderDetails = `
+      // Order Details:
+      // - Products: ${orderProducts.join(', ')}
+      // - Full Name: ${Full_Name}
+      // - Email: ${Email}
+      // - Address:${Address}
+      // - Country:${country}
+      // - City: ${city}
+      // - State: ${State}
+      // - Phone Number: ${Phone_Number}
+      // `;
+      // console.log(orderDetails)
+      const templatePath = 'views/details-email.ejs';
+      const templatePath2 = 'views/user-email.ejs';
+
+      // Read the HTML template file
+      const template = fs.readFileSync(templatePath, 'utf-8');
+      const templateVariables = {
+        cartItems: cartItems,
+        Full_Name: Full_Name,
+        Email: Email,
+        Address: Address,
+        country: country,
+        city: city,
+        State: State,
+        Phone_Number: Phone_Number,
+        total: total, // Include the function in template variables
+      };
+      const template2 = fs.readFileSync(templatePath2, 'utf-8');
+
+      const renderedTemplate = ejs.render(template, templateVariables);
+      const renderedTemplate2 = ejs.render(template2, templateVariables);
+
+      const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+          user: process.env.MAIL_USERNAME,
+          pass: 'bdkxhvlkvdqykjgq',
+          clientId: process.env.GOOGLE_CLIENT_ID,
+          clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+          refreshToken: process.env.OAUTH_REFRESH_TOKEN
+        },
+        tls: {
+          rejectUnauthorized: false
+        }
+      });
+
+      // Configure the email options
+      const mailOptions2 = {
+        from: 'joelayomide35@gmail.com',
+        to: user.username,
+        subject: 'Your Order',
+        html: renderedTemplate2,
+      };
+      transporter.sendMail(mailOptions2, async (error, info) => {
+        if (error) {
+          console.error("Error" + error);
+
+        } else {
+          console.log('Email sent sucessfully to user');
+          await UserModel.updateOne({ _id: userId }, { $set: { carts: [] } });
+           res.render('success')
+          
+          
+        }
+      });
+      const mailOptions = {
+        from: 'joelayomide35@gmail.com',
+        to: 'dexcoded094@gmail.com',
+        subject: 'New Order',
+        html: renderedTemplate,
+      };
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.error("Error" + error);
+
+        } else {
+          console.log('Email sent sucessfully to admin');
+
+        }
+      });
+    } else {
+      res.send("Login First")
+    }
+
+  } catch (err) {
+    console.error("Error " + err)
+    res.status(500).send("Internal Server Error")
+  }
+
+})
+
+app.get('/search', async(req, res) => {
+  const searchText = req.body.searchText;
+  console.log(searchText)
+  try {
+    // Use a regular expression to perform a case-insensitive search
+    const products = await Product.find({ name: { $regex: searchText, $options: 'i' } });
+    console.log(products)
+    // You can do something with the found products, e.g., send them as a response
+    res.render("search", {products:products});
+  } catch (error) {
+    // Handle errors, e.g., send an error response
+    const products = []
+    res.render("search", {products:products});
+
+  }
+})
+app.post('/search', async(req, res) => {
+  const searchText = req.body.searchText;
+  console.log(searchText)
+  try {
+    // Use a regular expression to perform a case-insensitive search
+    const products = await Product.find({ name: { $regex: searchText, $options: 'i' } });
+    console.log(products)
+    // You can do something with the found products, e.g., send them as a response
+    res.render("search", {products:products});
+  } catch (error) {
+    // Handle errors, e.g., send an error response
+    const products = []
+    res.render("search", {products:products});
+
+  }
+})
+
 
 app.get('/user-list', adminAuth, (req, res) => {
   UserModel.find()
     .then((users) => {
 
-      res.render('user-list', { users })
+      res.render('user-list', { users,  })
     })
     .catch(err => {
       console.error(err);
@@ -555,13 +1016,14 @@ app.get('/edit-product/:productId', async (req, res) => {
 app.post('/edit-product', async (req, res) => {
 
   try {
-    const { name, price, description, quantity } = req.body;
+    const { name, price, description, quantity, onSale } = req.body;
     const productId = req.body.productId;
     const updateProduct = {
       name: name,
       price: price,
       description: description,
       quantity: quantity,
+      sales: onSale === 'on',
 
     }
     console.log(updateProduct)
@@ -581,223 +1043,7 @@ app.post('/edit-product', async (req, res) => {
     res.render('error-404', { error: 'Internal Server Error' });
   }
 })
-app.get('/checkout', async (req, res) => {
-  if (req.user.billingDetails === null) {
-    try {
-      if (req.isAuthenticated()) {
-        const userId = req.user._id;
-        const user = await UserModel.findById(userId);
 
-        if (!user) {
-          console.log("User not found")
-          return res.status(404).send("Please login or register")
-        }
-        const user_details = {
-          Full_Name: req.user.name,
-          Email: req.user.username,
-          PhoneNo: req.user.phoneNo,
-
-        }
-        const cartItems = user.carts || []
-        const total = (price) => {
-          cartItems.map(item => {
-            price += item.product_price
-          })
-          return price
-        }
-        res.render("checkout", { cartItems: cartItems, total: total, user_details: user_details })
-      } else {
-        res.send("Login First")
-      }
-
-    } catch (err) {
-      console.error("Error retrieving cart items:" + err)
-      res.status(500).send("Internal Server Error")
-    }
-  }
-  else {
-    try {
-      if (req.isAuthenticated()) {
-        const userId = req.user._id;
-        const user = await UserModel.findById(userId);
-
-        if (!user) {
-          console.log("User not found")
-          return res.status(404).send("Please login or register")
-        }
-        const user_details = user.billingDetails
-        const cartItems = user.carts || []
-        const total = (price) => {
-          cartItems.map(item => {
-            price += item.product_price
-          })
-          return price
-        }
-        res.render("checkout", { cartItems: cartItems, total: total, user_details: user_details })
-      } else {
-        res.send("Login First")
-      }
-
-    } catch (err) {
-      console.error("Error retrieving cart items:" + err)
-      res.status(500).send("Internal Server Error")
-    }
-  }
-
-
-})
-app.post('/checkout', async (req, res) => {
-
-  try {
-    if (req.isAuthenticated()) {
-      const userId = req.user._id;
-      const user = await UserModel.findById(userId);
-      const { country, full_name, address, city, state, email, phone_number } = req.body
-
-      let billingDetails = {
-        country: country,
-        Full_Name: full_name,
-        Address: address,
-        City: city,
-        State: address,
-        Email: email,
-        PhoneNo: phone_number,
-      }
-      user.billingDetails = billingDetails;
-
-      // Save the updated user
-      const cartItems = user.carts || []
-      await user.save();
-
-      res.render("checkout", { cartItems: cartItems, total: total, user_details: user_details })
-
-
-
-    } else {
-      res.send("Login First")
-    }
-
-  } catch (err) {
-    console.error("Error retrieving cart items:" + err)
-    res.status(500).send("Internal Server Error")
-  }
-})
-app.get('/checkout-payment', async (req, res) => {
-  res.redirect('/checkout')
-})
-app.post('/checkout-payment', async (req, res) => {
-  // Process the form submission and send the email
-  const userId = req.user._id;
-  console.log(userId);
-  try {
-    if (req.isAuthenticated()) {
-      const userId = req.user._id;
-      const user = await UserModel.findById(userId);
-      let country = user.billingDetails.country
-      let Full_Name = user.billingDetails.Full_Name
-      let Address = user.billingDetails.Address
-      let city = user.billingDetails.City
-      let State = user.billingDetails.State
-      let Email = user.billingDetails.Email
-      let Phone_Number = user.billingDetails.PhoneNo
-      // Save the updated user
-
-      const cartItems = user.carts || []
-      const orderProducts = cartItems.map(item => item.product_name);
-      const total = (price) => {
-        cartItems.map(item => {
-          price += item.product_price
-        })
-        return price
-      }
-    //   const orderDetails = `
-    // Order Details:
-    // - Products: ${orderProducts.join(', ')}
-    // - Full Name: ${Full_Name}
-    // - Email: ${Email}
-    // - Address:${Address}
-    // - Country:${country}
-    // - City: ${city}
-    // - State: ${State}
-    // - Phone Number: ${Phone_Number}
-    // `;
-      // console.log(orderDetails)
-      const templatePath = 'views/details-email.ejs';
-      const templatePath2 = 'views/user-email.ejs';
-
-// Read the HTML template file
-const template = fs.readFileSync(templatePath, 'utf-8');
-      const templateVariables={
-        cartItems:cartItems,  
-        Full_Name: Full_Name,
-        Email: Email,
-        Address: Address,
-        country: country,
-        city: city,
-        State: State,
-        Phone_Number: Phone_Number,
-        total: total, // Include the function in template variables
-      };
-const template2 = fs.readFileSync(templatePath2, 'utf-8');
-    
-      const renderedTemplate = ejs.render(template, templateVariables);
-      const renderedTemplate2 = ejs.render(template2, templateVariables);
-
-          const transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-          user: process.env.MAIL_USERNAME,
-          pass:'bdkxhvlkvdqykjgq' ,
-          clientId: process.env.GOOGLE_CLIENT_ID,
-          clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-          refreshToken: process.env.OAUTH_REFRESH_TOKEN
-        },
-        tls: {
-          rejectUnauthorized: false
-        }
-      });
-
-      // Configure the email options
-      const mailOptions2 = {
-        from: 'joelayomide35@gmail.com',
-        to: user.username,
-        subject: 'Your Order',
-        html:renderedTemplate2,
-      };
-      transporter.sendMail(mailOptions2, (error, info) => {
-              if (error) {
-                console.error("Error" + error);
-      
-              } else {
-                console.log('Email sent sucessfully to user');
-      
-              }
-            });
-      const mailOptions = {
-        from: 'joelayomide35@gmail.com',
-        to: 'Nnenaonuma@gmail.com',
-        subject: 'New Order',
-        html:renderedTemplate,
-      };
-      transporter.sendMail(mailOptions, (error, info) => {
-              if (error) {
-                console.error("Error" + error);
-      
-              } else {
-                console.log('Email sent sucessfully to admin');
-      
-              }
-            });
-    } else {
-      res.send("Login First")
-    }
-
-  } catch (err) {
-    console.error("Error " + err)
-    res.status(500).send("Internal Server Error")
-  }
-
-})
 app.get('/details-email', async (req, res) => {
   try {
     if (req.isAuthenticated()) {
@@ -820,7 +1066,7 @@ app.get('/details-email', async (req, res) => {
         - Phone Number: ${user.billingDetails.PhoneNo}
       `;
 
-      res.render("details-email", { cartItems, total, orderDetails });
+      res.render("details-email", { cartItems, total, orderDetails, req: req });
     } else {
       res.send("Login First");
     }
@@ -831,20 +1077,18 @@ app.get('/details-email', async (req, res) => {
 });
 
 app.get('/about-us', (req, res) => {
-  res.render('about-us')
+res.render('about-us', {req: req})
 })
 app.post('/about-us', (req, res) => {
 
 });
-app.get('/blog', (req, res) => {
-  res.render('blog-grid-basic')
-})
+
 app.post('/about-us', (req, res) => {
 
 });
 
 app.get('/service', (req, res) => {
-  res.render('our-services')
+res.render('our-services', {req: req})
 })
 
 app.post('/service', (req, res) => {
@@ -852,7 +1096,7 @@ app.post('/service', (req, res) => {
 })
 
 app.get('/contact', (req, res) => {
-  res.render("contact-us")
+  res.render("contact-us", {req: req})
 })
 app.post('/contact-us', (req, res) => {
 
@@ -860,12 +1104,9 @@ app.post('/contact-us', (req, res) => {
 
 
 
-app.get('/wishlist', (req, res) => {
-  res.render('wishlist')
-});
 
-app.get('/coming-soon', (req, res) => {
-  res.render("coming-soon")
+app.get('/invoice', (req, res) => {
+  res.render("invoice")
 })
 
 
@@ -877,6 +1118,3 @@ app.get("*", (req, res) => {
 
 
 
-app.listen(3500, () => {
-  console.log("listening on Port 3500")
-})

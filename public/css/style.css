@@ -152,7 +152,7 @@ textarea.textarea-field {
 }
 
 input[type=checkbox] {
-  display: none;
+  display:;
 }
 
 input[type=checkbox] + label {

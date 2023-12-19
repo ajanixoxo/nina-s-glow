@@ -129,8 +129,13 @@
                                                 <input type="hidden" name="productName" value="<%= product.name %>"> 
                                                 <input type="hidden" name="productPrice" value="<%= product.price %>"> 
                                                 <input type="hidden" name="productImg" value="<%= product.image.name %>"> 
+                                                <input type="hidden" name="productSales" value="<%= product.sales %>">
+                                                <% if (product.quantity == 0) {%> 
+                                                <button  class="yena-btn sorbus-color" type="none" style="background-color: grey;">Out Of Stock </button> 
+
+                                                    <% } else{%>
                                                 <button  class="yena-btn sorbus-color" type="submit">Add To Cart <i class="lastudioicon-shopping-cart-3"></i></button> 
-                                           
+                                                <% } %>
                                             <!-- <a class="yena-btn sorbus-color" href="javascript:void(0)">Add to cart</a> -->
                                         </div>
                                     </form> 
