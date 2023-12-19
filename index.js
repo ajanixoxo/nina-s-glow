@@ -852,7 +852,7 @@ app.post('/checkout-payment', async(req, res) => {
         service: 'Gmail',
         auth: {
           user: process.env.MAIL_USERNAME,
-          pass: 'bdkxhvlkvdqykjgq',
+          pass: process.env.MAIL_PASSWORD,
           clientId: process.env.GOOGLE_CLIENT_ID,
           clientSecret: process.env.GOOGLE_CLIENT_SECRET,
           refreshToken: process.env.OAUTH_REFRESH_TOKEN
